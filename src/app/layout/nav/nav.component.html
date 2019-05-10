@@ -1,0 +1,18 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary justify-content-between">
+  <a routerLink="/" routerLinkActive="active" class="navbar-brand">
+    <img src="assets/logo_white.png" height="35" class="d-inline-block align-top" alt="">
+  </a>
+  <div *ngIf="true">
+    <div ngbDropdown class="d-inline-block">
+      <button class="btn btn-primary" id="userActions" ngbDropdownToggle>John Doe</button>
+      <div ngbDropdownMenu aria-labelledby="userActions">
+        <button class="dropdown-item" (click)="logout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<button (click)="selectLanguage('en');">English</button>
+<button (click)="selectLanguage('es');">Español</button>
