@@ -13,6 +13,8 @@ import { NavComponent } from './layout/nav/nav.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { PageComponent } from './layout/page/page.component';
 import { LoginComponent } from './login/login.component';
+import { PageNotFoundComponent } from './layout/page-not-found/page-not-found.component';
+import { ProjectListComponent } from './project-list/project-list.component';
 
 const l10nConfig: L10nConfig = {
   logger: {
@@ -42,7 +44,9 @@ const l10nConfig: L10nConfig = {
     NavComponent,
     FooterComponent,
     PageComponent,
-    LoginComponent
+    LoginComponent,
+    PageNotFoundComponent,
+    ProjectListComponent
   ],
   imports: [
     BrowserModule,

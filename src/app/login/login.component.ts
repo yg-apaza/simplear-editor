@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../shared/security/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public authService: AuthService,
+    private router: Router,
+  ) { }
 
   ngOnInit() {
+  }
+
+  tryGoogleLogin() {
+    this.authService.doGoogleLogin()
+    .then(res => {
+      this.router.navigate(['/projects']);
+    });
   }
 
 }
