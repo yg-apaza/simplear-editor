@@ -12,3 +12,13 @@
     height: 60px;
     background-color: #f8f8f8;
 }
+
+.dashed-card {
+    border-style: dashed !important;
+    border-color: var(--primary) !important;;
+    border-width: 4px !important;;
+}
+
+.clickable {
+    cursor: pointer;
+}

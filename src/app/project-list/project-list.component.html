@@ -1,3 +1,55 @@
-<p>
-  project-list works!
-</p>
+<h1 l10nTranslate>myProjects</h1>
+<p l10nTranslate>myProjectsHint</p>
+
+<div class="row">
+  <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 d-flex align-items-stretch">
+    <div class="card w-100 dashed-card text-center text-primary mb-4 clickable" (click)="openModal(createProjectModal)">
+      <div class="card-body">
+        <p class="card-text">
+          <i class="fa fa-5x fa-plus"></i>
+        </p>
+        <h5 class="card-text" l10nTranslate>NEWPROJECT</h5>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 d-flex align-items-stretch">
+    <div class="card w-100 mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Titulo</h5>
+        <p class="card-text">Mi primera app de realidad aumentada</p>
+        <div class="d-flex justify-content-end" l10nTranslate>
+          <button class="btn btn-outline-primary" [routerLink]="['/edit', 5]" placement="bottom" ngbTooltip="{{ 'edit' | translate: lang }}">
+            <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+          </button>
+          <button class="btn btn-outline-danger ml-1" (click)="removeProject(p.key)" placement="bottom" ngbTooltip="{{ 'remove' | translate: lang }}">
+            <i class="far fa-trash-alt" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #createProjectModal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" l10nTranslate>newProject</h4>
+    <button type="button" class="close" (click)="d()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="createProject()" #createProjectForm="ngForm">
+      <div class="form-group">
+        <label for="inputTitle" l10nTranslate>title</label>
+        <input type="email" class="form-control" id="inputTitle" placeholder="title" required [(ngModel)]="newProject.title" name="title" l10nTranslate l10n-placeholder>
+      </div>
+      <div class="form-group">
+        <label for="inputDescription" l10nTranslate>description</label>
+        <textarea class="form-control" id="inputDescription" rows="3" placeholder="description" required [(ngModel)]="newProject.description" name="description" l10nTranslate l10n-placeholder></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-success" l10nTranslate>CREATE</button>
+      </div>
+    </form>
+  </div>
+</ng-template>

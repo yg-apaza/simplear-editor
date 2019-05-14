@@ -17,6 +17,7 @@ export class UserResolver implements Resolve<UserModel> {
       this.userService.getCurrentUser()
       .then(res => {
         const user = new UserModel();
+        user.uid = res.uid;
         user.email = res.email;
         user.image = res.photoURL;
         user.name = res.displayName;

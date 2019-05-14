@@ -4,5 +4,15 @@
     "pageNotFound": "No se encontró esta página :(",
     "lost": "Oops. Parece que te perdiste",
     "returnHome": "Volver al inicio",
-    "signInGoogle": "Entra con Google"
+    "signInGoogle": "Entra con Google",
+
+    "myProjects" : "Mis proyectos",
+    "myProjectsHint": "Edita tus proyectos de realidad aumentada o crea uno nuevo",
+    "NEWPROJECT": "NUEVO PROYECTO",
+    "newProject": "Nuevo Proyecto",
+    "edit": "Editar",
+    "remove": "Eliminar",
+    "title": "Título",
+    "description": "Descripción",
+    "CREATE": "CREAR"
 }

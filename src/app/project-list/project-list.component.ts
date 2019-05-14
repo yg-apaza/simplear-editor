@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Language } from 'angular-l10n';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ProjectModel } from '../shared/project/project.model';
 
 @Component({
   selector: 'app-project-list',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectListComponent implements OnInit {
 
-  constructor() { }
+  @Language() lang: string;
+
+  createProjectModalReference: NgbModalRef;
+  newProject = new ProjectModel();
+
+  constructor(
+    private modalService: NgbModal
+  ) { }
 
   ngOnInit() {
+  }
+
+  openModal(content) {
+    this.createProjectModalReference = this.modalService.open(content);
   }
 
 }

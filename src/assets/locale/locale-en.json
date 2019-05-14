@@ -4,5 +4,15 @@
     "pageNotFound": "Page not found :(",
     "lost": "Oops. It looks like you're lost",
     "returnHome": "Return to home",
-    "signInGoogle": "Sign in with Google"
+    "signInGoogle": "Sign in with Google",
+
+    "myProjects" : "My projects",
+    "myProjectsHint": "Check all your existing augmented reality projects or create a new one",
+    "NEWPROJECT": "NEW PROJECT",
+    "newProject": "New Project",
+    "edit": "Edit",
+    "remove": "Remove",
+    "title": "Title",
+    "description": "Description",
+    "CREATE": "CREATE"
 }

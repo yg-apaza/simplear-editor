@@ -15,6 +15,8 @@ import { PageComponent } from './layout/page/page.component';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './layout/page-not-found/page-not-found.component';
 import { ProjectListComponent } from './project-list/project-list.component';
+import { EditorComponent } from './editor/editor.component';
+import { FormsModule } from '@angular/forms';
 
 const l10nConfig: L10nConfig = {
   logger: {
@@ -46,12 +48,14 @@ const l10nConfig: L10nConfig = {
     PageComponent,
     LoginComponent,
     PageNotFoundComponent,
-    ProjectListComponent
+    ProjectListComponent,
+    EditorComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     NgbModule,
+    FormsModule,
     AppRoutingModule,
     TranslationModule.forRoot(l10nConfig),
     AngularFireModule.initializeApp(environment.firebase),
