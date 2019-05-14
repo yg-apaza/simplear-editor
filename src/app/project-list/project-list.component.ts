@@ -26,4 +26,12 @@ export class ProjectListComponent implements OnInit {
     this.createProjectModalReference = this.modalService.open(content);
   }
 
+  createProject() {
+
+  }
+
+  removeProject(projectId) {
+
+  }
+
 }
