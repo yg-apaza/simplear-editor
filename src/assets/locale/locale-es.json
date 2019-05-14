@@ -1,4 +1,8 @@
 {
-    "title": "Localizacion en Angular",
-    "changeLanguage": "Cambia el lenguaje"
+    "betaMessage" : "<strong>SimpleAR Editor v0.1</strong>. Esta aplicación esta aún en fase beta, reporta errores y peticiones de nuevas caracteristicas en el <a target='_blank' href='https://github.com/yg-apaza/simplear-editor/issues'>repositorio de Github</a>",
+    "logout": "Cerrar sesión",
+    "pageNotFound": "No se encontró esta página :(",
+    "lost": "Oops. Parece que te perdiste",
+    "returnHome": "Volver al inicio",
+    "signInGoogle": "Entra con Google"
 }

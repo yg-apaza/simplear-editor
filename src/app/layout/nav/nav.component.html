@@ -1,19 +1,30 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary justify-content-between">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary justify-content-between">
   <a routerLink="/" routerLinkActive="active" class="navbar-brand">
     <img src="assets/logo/logo_white.png" height="35" class="d-inline-block align-top" alt="">
   </a>
-  <div ngbDropdown class="d-inline-block">
-    <button class="btn btn-primary" id="userActions" ngbDropdownToggle>
-      <img src="{{ user.image }}" class="rounded-circle" style="width: 25px">
-      {{ user.name }}
-    </button>
-    <div ngbDropdownMenu aria-labelledby="userActions">
-      <button class="dropdown-item" (click)="logout()">
-        <i class="fas fa-sign-out-alt"></i> Logout
+
+  <div class="justify-content-end">
+    <div ngbDropdown class="d-inline-block">
+      <button class="btn btn-primary" id="userActions" ngbDropdownToggle>
+        <img src="{{ user.image }}" class="rounded-circle" style="width: 25px">
+        {{ user.name }}
       </button>
+      <div ngbDropdownMenu aria-labelledby="userActions">
+        <button class="dropdown-item" (click)="logout()" l10nTranslate>
+          <i class="fas fa-sign-out-alt"></i> logout
+        </button>
+      </div>
+    </div>
+
+    <div ngbDropdown class="d-inline-block">
+      <button class="btn btn-primary" id="languageOptions" ngbDropdownToggle>
+        <span [ngClass]="'flag-icon ' + supportedLanguages[locale.getCurrentLanguage()].icon + ' flag-icon-squared'"></span> {{ supportedLanguages[locale.getCurrentLanguage()].name }}
+      </button>
+      <div ngbDropdownMenu aria-labelledby="languageOptions">
+        <button class="dropdown-item" (click)="selectLanguage(l.key)" *ngFor="let l of supportedLanguages | keyvalue">
+          <span [ngClass]="'flag-icon ' + l.value.icon +  ' flag-icon-squared'"></span> {{ l.value.name }}
+        </button>
+      </div>
     </div>
   </div>
 </nav>
-
-<!--button (click)="selectLanguage('en');">English</button>
-<button (click)="selectLanguage('es');">Español</button-->

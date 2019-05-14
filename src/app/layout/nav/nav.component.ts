@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LocaleService } from 'angular-l10n';
 import { AuthService } from 'src/app/shared/security/auth.service';
-import { Location } from '@angular/common';
 import { UserModel } from 'src/app/shared/security/user.model';
+import SupportedLanguages from './supported-languages';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -12,14 +13,17 @@ import { UserModel } from 'src/app/shared/security/user.model';
 export class NavComponent implements OnInit {
 
   @Input() user: UserModel;
+  supportedLanguages = SupportedLanguages;
 
   constructor(
     public authService: AuthService,
-    private location: Location,
+    private router: Router,
     public locale: LocaleService
   ) { }
 
   ngOnInit() {
+    this.supportedLanguages = SupportedLanguages;
+
   }
 
   selectLanguage(language: string): void {
@@ -29,7 +33,7 @@ export class NavComponent implements OnInit {
   logout() {
     this.authService.doLogout()
     .then((res) => {
-      this.location.back();
+      this.router.navigate(['login']);
     }, (error) => {
       console.log('Logout error', error);
     });

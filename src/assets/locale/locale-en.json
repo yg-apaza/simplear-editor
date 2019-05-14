@@ -1,4 +1,8 @@
 {
-    "title": "Angular localization",
-    "changeLanguage": "Change language"
+    "betaMessage" : "<strong>SimpleAR Editor v0.1</strong>. This is still in beta phase, please report bugs and send your feature requests at the <a target='_blank' href='https://github.com/yg-apaza/simplear-editor/issues'>Github repository</a>",
+    "logout": "Logout",
+    "pageNotFound": "Page not found :(",
+    "lost": "Oops. It looks like you're lost",
+    "returnHome": "Return to home",
+    "signInGoogle": "Sign in with Google"
 }
