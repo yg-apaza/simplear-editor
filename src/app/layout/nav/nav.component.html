@@ -4,7 +4,7 @@
   </a>
 
   <div class="justify-content-end">
-    <div ngbDropdown class="d-inline-block">
+    <div ngbDropdown class="d-inline-block" *ngIf="user">
       <button class="btn btn-primary" id="userActions" ngbDropdownToggle>
         <img src="{{ user.image }}" class="rounded-circle" style="width: 25px">
         {{ user.name }}
