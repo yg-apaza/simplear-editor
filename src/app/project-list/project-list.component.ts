@@ -4,6 +4,7 @@ import { Language } from 'angular-l10n';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ProjectModel } from '../shared/project/project.model';
 import { ProjectService } from '../shared/project/project.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-project-list',
@@ -17,13 +18,17 @@ export class ProjectListComponent implements OnInit {
   createProjectModalReference: NgbModalRef;
   newProject = new ProjectModel();
 
+  projects: Observable<ProjectModel[]>;
+
   constructor(
     private projectService: ProjectService,
     private router: Router,
     private modalService: NgbModal,
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.projects = this.projectService.getAll();
+  }
 
   openModal(content) {
     this.createProjectModalReference = this.modalService.open(content);
@@ -32,7 +37,6 @@ export class ProjectListComponent implements OnInit {
   // TODO: Avoid blank title
   createProject() {
     const id = this.projectService.create(this.newProject);
-    console.log(id);
     if (id) {
       this.createProjectModalReference.close();
       this.router.navigate(['/edit', id]);
@@ -42,8 +46,8 @@ export class ProjectListComponent implements OnInit {
     }
   }
 
-  removeProject(projectId) {
-
+  deleteProject(projectId: string) {
+    this.projectService.delete(projectId);
   }
 
 }

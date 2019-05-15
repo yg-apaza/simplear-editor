@@ -31,7 +31,7 @@ export class NavComponent implements OnInit {
     this.supportedLanguages = SupportedLanguages;
   }
 
-  selectLanguage(language: string): void {
+  selectLanguage(language: string) {
     this.locale.setCurrentLanguage(language);
   }
 
@@ -40,6 +40,7 @@ export class NavComponent implements OnInit {
     .then((res) => {
       this.router.navigate(['login']);
     }, (error) => {
+      // TODO: Show on UI
       console.log('Logout error', error);
     });
   }

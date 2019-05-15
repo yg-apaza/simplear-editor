@@ -12,16 +12,16 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 d-flex align-items-stretch">
+  <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 d-flex align-items-stretch" *ngFor="let project of projects | async">
     <div class="card w-100 mb-4">
       <div class="card-body">
-        <h5 class="card-title">Titulo</h5>
-        <p class="card-text">Mi primera app de realidad aumentada</p>
+        <h5 class="card-title">{{ project.title }}</h5>
+        <p class="card-text">{{ project.description }}</p>
         <div class="d-flex justify-content-end" l10nTranslate>
-          <button class="btn btn-outline-primary" [routerLink]="['/edit', 5]" placement="bottom" ngbTooltip="{{ 'edit' | translate: lang }}">
+          <button class="btn btn-outline-primary" [routerLink]="['/edit', project.id]" placement="bottom" ngbTooltip="{{ 'edit' | translate: lang }}">
             <i class="fas fa-pencil-alt" aria-hidden="true"></i>
           </button>
-          <button class="btn btn-outline-danger ml-1" (click)="removeProject(5)" placement="bottom" ngbTooltip="{{ 'remove' | translate: lang }}">
+          <button class="btn btn-outline-danger ml-1" (click)="deleteProject(project.id)" placement="bottom" ngbTooltip="{{ 'remove' | translate: lang }}">
             <i class="far fa-trash-alt" aria-hidden="true"></i>
           </button>
         </div>

@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { ProjectModel } from './project.model';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { AuthService } from '../security/auth.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
 
-  projectsRef: AngularFireList<any>;
+  projectsPath: string;
 
   constructor(
     private db: AngularFireDatabase,
@@ -16,14 +17,24 @@ export class ProjectService {
   ) {
     this.authService.getCurrentUser()
     .then(user => {
-      this.projectsRef = this.db.list(`/projects/${user.uid}`);
+      this.projectsPath  = `/projects/${user.uid}/`;
     }, err => {
-      // TODO: Throw this error to GUI or component
+      // TODO: Throw this error to GUI or component, no user logged
       console.log('Project service initialization error: ' + err);
     });
   }
 
   create(project: ProjectModel): string {
-    return this.projectsRef.push(project).key;
+    project.id = this.db.createPushId();
+    this.db.list(this.projectsPath).set(project.id, project);
+    return project.id;
+  }
+
+  getAll(): Observable<ProjectModel[]> {
+    return this.db.list<ProjectModel>(this.projectsPath, ref => ref.orderByKey()).valueChanges();
+  }
+
+  delete(id: string) {
+    this.db.object(this.projectsPath + id).remove();
   }
 }

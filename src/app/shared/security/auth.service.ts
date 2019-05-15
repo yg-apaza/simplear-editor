@@ -12,19 +12,19 @@ export class AuthService {
     public afAuth: AngularFireAuth
   ) { }
 
-  doGoogleLogin() {
+  doGoogleLogin(): Promise<any> {
     return this.doLogin(new auth.GoogleAuthProvider());
   }
 
-  doFacebookLogin() {
+  doFacebookLogin(): Promise<any> {
     return this.doLogin(new auth.FacebookAuthProvider());
   }
 
-  doTwitterLogin() {
+  doTwitterLogin(): Promise<any> {
     return this.doLogin(new auth.TwitterAuthProvider());
   }
 
-  doLogin(provider: auth.AuthProvider) {
+  doLogin(provider: auth.AuthProvider): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.afAuth.auth
       .signInWithPopup(provider)
@@ -36,7 +36,7 @@ export class AuthService {
     });
   }
 
-  doLogout() {
+  doLogout(): Promise<any> {
     return new Promise((resolve, reject) => {
       if (auth().currentUser) {
         this.afAuth.auth.signOut();
@@ -47,7 +47,7 @@ export class AuthService {
     });
   }
 
-  getCurrentUser() {
+  getCurrentUser(): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       auth().onAuthStateChanged((userAuth) => {
         if (userAuth) {
