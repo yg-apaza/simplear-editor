@@ -12,18 +12,23 @@ import { Router } from '@angular/router';
 })
 export class NavComponent implements OnInit {
 
-  @Input() user: UserModel;
+  user: UserModel;
   supportedLanguages = SupportedLanguages;
 
   constructor(
-    public authService: AuthService,
+    private authService: AuthService,
     private router: Router,
     public locale: LocaleService
   ) { }
 
   ngOnInit() {
+    this.authService.getCurrentUser()
+    .then(user => {
+      this.user = user;
+    }, err => {
+      this.router.navigate(['/login']);
+    });
     this.supportedLanguages = SupportedLanguages;
-
   }
 
   selectLanguage(language: string): void {

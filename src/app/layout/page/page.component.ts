@@ -9,19 +9,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PageComponent implements OnInit {
 
-  user: UserModel = new UserModel();
-
   constructor(
     private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
-    this.route.data.subscribe(routeData => {
-      const user = routeData.user;
-      if (user) {
-        this.user = user;
-      }
-    });
   }
 
 }

@@ -7,7 +7,6 @@ import { ProjectListComponent } from './project-list/project-list.component';
 import { EditorComponent } from './editor/editor.component';
 import { GuestGuard } from './shared/security/guest.guard';
 import { LoggedInGuard } from './shared/security/logged-in.guard';
-import { UserResolver } from './shared/security/user.resolver';
 
 const routes: Routes = [
   {
@@ -18,22 +17,19 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    canActivate: [ GuestGuard ]
+    canActivate: [GuestGuard]
   },
   {
     path: '',
     component: PageComponent,
-    canActivate: [ LoggedInGuard ],
-    resolve: {
-      user: UserResolver
-    },
+    canActivate: [LoggedInGuard],
     children: [
       {
         path: 'projects',
         component: ProjectListComponent
       },
       {
-        // TODO: Add author guard
+        // TODO: Add owner guard
         path: 'edit/:id',
         component: EditorComponent
       }
