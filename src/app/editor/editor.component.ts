@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ProjectModel } from '../shared/project/project.model';
 
 @Component({
   selector: 'app-editor',
@@ -8,15 +9,25 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EditorComponent implements OnInit {
 
-  projectId: string;
+  project = new ProjectModel('', '', '');
 
   constructor(
-    private route: ActivatedRoute
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.projectId = params.id;
+    this.activatedRoute.data.subscribe(routeData => {
+      if (routeData.project){
+        this.project = routeData.project;
+      } else {
+        // TODO: Update when resolvers can handle errors
+        console.error('Can\'t load this project');
+        this.router.navigate(['projects']);
+      }
+    }, err => {
+      // TODO: Show to UI and stop everything
+      console.error('Can\'t load this project');
     });
   }
 

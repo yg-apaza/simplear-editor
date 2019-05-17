@@ -7,6 +7,8 @@ import { ProjectListComponent } from './project-list/project-list.component';
 import { EditorComponent } from './editor/editor.component';
 import { GuestGuard } from './shared/security/guest.guard';
 import { LoggedInGuard } from './shared/security/logged-in.guard';
+import { OwnerGuard } from './shared/security/owner.guard';
+import { ProjectResolver } from './editor/project.resolver';
 
 const routes: Routes = [
   {
@@ -23,15 +25,20 @@ const routes: Routes = [
     path: '',
     component: PageComponent,
     canActivate: [LoggedInGuard],
+    runGuardsAndResolvers: 'always',
     children: [
       {
         path: 'projects',
         component: ProjectListComponent
       },
       {
-        // TODO: Add owner guard
         path: 'edit/:id',
-        component: EditorComponent
+        component: EditorComponent,
+        canActivate: [OwnerGuard],
+        resolve: {
+          project: ProjectResolver
+        },
+        runGuardsAndResolvers: 'always'
       }
     ]
   },

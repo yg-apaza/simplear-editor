@@ -5,11 +5,11 @@ export class UserModel {
   name: string;
   image: string;
 
-  constructor() {
-    this.uid = '';
-    this.email = '';
-    this.name = '';
-    this.image = '';
+  constructor(uid: string, email: string, name: string, image: string) {
+    this.uid = uid;
+    this.email = email;
+    this.name = name;
+    this.image = image;
   }
 
 }

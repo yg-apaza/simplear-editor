@@ -1,40 +1,52 @@
 import { Injectable } from '@angular/core';
 import { ProjectModel } from './project.model';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { AuthService } from '../security/auth.service';
 import { Observable } from 'rxjs';
+import { switchMap, flatMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
 
-  projectsPath: string;
+  projectsPath = '/projects';
 
   constructor(
     private db: AngularFireDatabase,
     private authService: AuthService,
-  ) {
-    this.authService.getCurrentUser()
-    .then(user => {
-      this.projectsPath  = `/projects/${user.uid}/`;
-    }, err => {
-      // TODO: Throw this error to GUI or component, no user logged
-      console.log('Project service initialization error: ' + err);
+  ) { }
+
+  create(project: ProjectModel): Promise<string> {
+    project.id = this.db.createPushId();
+    return new Promise<any>((resolve, reject) => {
+      this.authService.getCurrentUser().subscribe(user => {
+        this.db.list<ProjectModel>(`${this.projectsPath}/${user.uid}`)
+          .set(project.id, project).then(() => {
+            resolve(project.id);
+          })
+          .catch( err => {
+            reject();
+          });
+      });
     });
   }
 
-  create(project: ProjectModel): string {
-    project.id = this.db.createPushId();
-    this.db.list(this.projectsPath).set(project.id, project);
-    return project.id;
+  get(projectId: string): Observable<ProjectModel> {
+    return this.authService.getCurrentUser().pipe(
+      switchMap(user => this.db.object<ProjectModel>(`${this.projectsPath}/${user.uid}/${projectId}`).valueChanges())
+    );
   }
 
   getAll(): Observable<ProjectModel[]> {
-    return this.db.list<ProjectModel>(this.projectsPath, ref => ref.orderByKey()).valueChanges();
+    return this.authService.getCurrentUser().pipe(
+      switchMap(user => this.db.list<ProjectModel>(`${this.projectsPath}/${user.uid}`, ref => ref.orderByKey()).valueChanges())
+    );
   }
 
-  delete(id: string) {
-    this.db.object(this.projectsPath + id).remove();
+  delete(projectId: string): Promise<void> {
+    return this.authService.getCurrentUser().pipe(
+      flatMap(user => this.db.object(`${this.projectsPath}/${user.uid}/${projectId}`).remove())
+    ).toPromise();
   }
 }

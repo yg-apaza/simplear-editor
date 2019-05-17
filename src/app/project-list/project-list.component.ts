@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Language } from 'angular-l10n';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ProjectModel } from '../shared/project/project.model';
 import { ProjectService } from '../shared/project/project.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-project-list',
@@ -16,9 +15,9 @@ export class ProjectListComponent implements OnInit {
   @Language() lang: string;
 
   createProjectModalReference: NgbModalRef;
-  newProject = new ProjectModel();
+  newProject = new ProjectModel('', '', '');
 
-  projects: Observable<ProjectModel[]>;
+  projects: ProjectModel[];
 
   constructor(
     private projectService: ProjectService,
@@ -27,7 +26,12 @@ export class ProjectListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.projects = this.projectService.getAll();
+    this.projectService.getAll().subscribe(projects => {
+      this.projects = projects;
+    }, err => {
+      // TODO: Show error on UI
+      console.error('Couldn\'t get projects');
+    });
   }
 
   openModal(content) {
@@ -36,18 +40,24 @@ export class ProjectListComponent implements OnInit {
 
   // TODO: Avoid blank title
   createProject() {
-    const id = this.projectService.create(this.newProject);
-    if (id) {
-      this.createProjectModalReference.close();
-      this.router.navigate(['/edit', id]);
-    } else {
-      // TODO: No se pudo crear el projecto
-      console.log('Create project error');
-    }
+    this.projectService.create(this.newProject)
+      .then(projectId => {
+        this.createProjectModalReference.close();
+        this.router.navigate(['/edit', projectId]);
+      }).catch(err => {
+        // TODO: Show to UI
+        console.error('Couldn\'t create new project');
+      });
   }
 
   deleteProject(projectId: string) {
-    this.projectService.delete(projectId);
+    this.projectService.delete(projectId)
+      .then(() => {
+        this.projects.filter(project => project.id !== projectId);
+      })
+      .catch(err => {
+        console.error('Couldn\'t delete project %s', projectId);
+      });
   }
 
 }

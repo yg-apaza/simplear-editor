@@ -17,6 +17,7 @@ import { PageNotFoundComponent } from './layout/page-not-found/page-not-found.co
 import { ProjectListComponent } from './project-list/project-list.component';
 import { EditorComponent } from './editor/editor.component';
 import { FormsModule } from '@angular/forms';
+import { ProjectResolver } from './editor/project.resolver';
 
 const l10nConfig: L10nConfig = {
   logger: {
@@ -62,7 +63,7 @@ const l10nConfig: L10nConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [],
+  providers: [ProjectResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -18,9 +18,11 @@ export class LoginComponent implements OnInit {
   }
 
   tryGoogleLogin() {
-    this.authService.doGoogleLogin()
-    .then(res => {
+    this.authService.doGoogleLogin().then(res => {
       this.router.navigate(['/projects']);
+    }).catch(err => {
+      // TODO: Show error on UI
+      console.error('Google Login error');
     });
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LocaleService } from 'angular-l10n';
 import { AuthService } from 'src/app/shared/security/auth.service';
 import { UserModel } from 'src/app/shared/security/user.model';
@@ -16,17 +16,14 @@ export class NavComponent implements OnInit {
   supportedLanguages = SupportedLanguages;
 
   constructor(
-    private authService: AuthService,
     private router: Router,
+    private authService: AuthService,
     public locale: LocaleService
   ) { }
 
   ngOnInit() {
-    this.authService.getCurrentUser()
-    .then(user => {
+    this.authService.getCurrentUser().subscribe(user => {
       this.user = user;
-    }, err => {
-      this.router.navigate(['/login']);
     });
     this.supportedLanguages = SupportedLanguages;
   }
@@ -37,11 +34,9 @@ export class NavComponent implements OnInit {
 
   logout() {
     this.authService.doLogout()
-    .then((res) => {
-      this.router.navigate(['login']);
-    }, (error) => {
-      // TODO: Show on UI
-      console.log('Logout error', error);
-    });
+      .then(() => this.router.navigate(['login']))
+      .catch( err => {
+        console.error('Couldn\'t logout user');
+      });
   }
 }

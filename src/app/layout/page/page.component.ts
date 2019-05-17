@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { UserModel } from 'src/app/shared/security/user.model';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-page',
@@ -9,9 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PageComponent implements OnInit {
 
-  constructor(
-    private route: ActivatedRoute,
-  ) { }
+  constructor() { }
 
   ngOnInit() {
   }
