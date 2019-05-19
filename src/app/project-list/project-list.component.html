@@ -1,6 +1,6 @@
 <h1 l10nTranslate>myProjects</h1>
 <p l10nTranslate>myProjectsHint</p>
-
+<hr>
 <div class="row">
   <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 d-flex align-items-stretch">
     <div class="card w-100 dashed-card text-center text-primary mb-4 clickable" (click)="openModal(createProjectModal)">
@@ -45,10 +45,10 @@
       </div>
       <div class="form-group">
         <label for="inputDescription" l10nTranslate>description</label>
-        <textarea class="form-control" id="inputDescription" rows="3" placeholder="description" required [(ngModel)]="newProject.description" name="description" l10nTranslate l10n-placeholder></textarea>
+        <textarea class="form-control" id="inputDescription" rows="3" placeholder="description" [(ngModel)]="newProject.description" name="description" l10nTranslate l10n-placeholder></textarea>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-outline-success" l10nTranslate>CREATE</button>
+        <button type="submit" class="btn btn-outline-success" [disabled]="!createProjectForm.form.valid" l10nTranslate>CREATE</button>
       </div>
     </form>
   </div>

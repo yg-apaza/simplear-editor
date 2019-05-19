@@ -13,6 +13,8 @@
     background-color: #f8f8f8;
 }
 
+/* Cards for Project list */
+
 .dashed-card {
     border-style: dashed !important;
     border-color: var(--primary) !important;;
@@ -21,4 +23,12 @@
 
 .clickable {
     cursor: pointer;
+}
+
+.ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+    border-left: 5px solid #a94442; /* red */
 }
