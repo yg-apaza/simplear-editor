@@ -41,7 +41,7 @@
     <form (ngSubmit)="createProject()" #createProjectForm="ngForm">
       <div class="form-group">
         <label for="inputTitle" l10nTranslate>title</label>
-        <input type="email" class="form-control" id="inputTitle" placeholder="title" required [(ngModel)]="newProject.title" name="title" l10nTranslate l10n-placeholder>
+        <input type="text" class="form-control" id="inputTitle" placeholder="title" required [(ngModel)]="newProject.title" name="title" l10nTranslate l10n-placeholder>
       </div>
       <div class="form-group">
         <label for="inputDescription" l10nTranslate>description</label>

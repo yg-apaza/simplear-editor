@@ -22,5 +22,9 @@
 
     "cats": "Gatos",
     "earth": "Tierra",
-    "other": "Otro"
+    "other": "Otro",
+
+    "markers": "Marcadores",
+    "addMarker": "Agregar marcador",
+    "markerName": "Nombre de marcador"
 }

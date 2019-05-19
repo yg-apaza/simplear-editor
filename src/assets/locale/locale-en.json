@@ -22,5 +22,9 @@
 
     "cats": "Cats",
     "earth": "Earth",
-    "other": "Other"
+    "other": "Other",
+
+    "markers": "Markers",
+    "addMarker": "Add marker",
+    "markerName": "Marker name"
 }

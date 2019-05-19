@@ -1,26 +1,26 @@
 const AvailableMarkers = [
   {
     title: 'cats',
-    content: [
-      'assets/markers/cat.jpg',
-      'assets/markers/chemistry.jpg'
-    ]
+    content: {
+      cat: 'assets/markers/cat.jpg',
+      chemistry: 'assets/markers/chemistry.jpg'
+    }
   },
   {
     title: 'earth',
-    content: [
-      'assets/markers/earth.jpg',
-      'assets/markers/stones.jpg',
-      'assets/markers/tree.jpg'
-    ]
+    content: {
+      earth: 'assets/markers/earth.jpg',
+      stones: 'assets/markers/stones.jpg',
+      tree: 'assets/markers/tree.jpg'
+    }
   },
   {
     title: 'other',
-    content: [
-      'assets/markers/chess.jpg',
-      'assets/markers/fruits.jpg',
-      'assets/markers/house.jpg'
-    ]
+    content: {
+      chess: 'assets/markers/chess.jpg',
+      fruits: 'assets/markers/fruits.jpg',
+      house: 'assets/markers/house.jpg'
+    }
   }
 ];
 
