@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-12">
+    <ngb-accordion #acc="ngbAccordion" activeIds="static-1">
+      <ngb-panel id="static-1">
+        <ng-template ngbPanelHeader>
+          <div class="d-flex align-items-center justify-content-between">
+            <button ngbPanelToggle class="btn btn-link container-fluid text-left pl-0">Markers</button>
+            <button type="button" class="btn btn-sm btn-success ml-2" (click)="openAddMarkerModal(addMarkerModal)">
+              <i class="fa fa-plus"></i>
+            </button>
+          </div>
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <div class="row">
+            <div class="col-sm-3 col-md-6 col-lg-6" *ngFor="let path of availableMarkers[0].content; let i = index">
+              <img src="{{ path }}" class="img-fluid mb-1">
+              <!--p class="text-center">{{ predefinedNaturalMarkerResourcesIds[i] }}</p-->
+            </div>
+          </div>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+  </div>
+</div>
+
+<ng-template #addMarkerModal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Add marker</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="addMarker()">
+      
+      <div class="col-lg-12" *ngFor="let category of availableMarkers; let i = index">
+        <p>{{ category.title | translate: lang }}</p>
+        <hr>
+        <div class="form-row">
+          <div class="form-group col-6 col-sm-4 col-md-4 col-lg-4" *ngFor="let markerPath of availableMarkers[i].content">
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="radio" value="{{ ass }}">
+                <img src="{{ markerPath }}" class="img-fluid">
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-success">OK</button>
+      </div>
+    </form>
+  </div>
+</ng-template>

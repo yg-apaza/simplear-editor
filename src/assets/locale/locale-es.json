@@ -1,5 +1,5 @@
 {
-    "betaMessage" : "<strong>SimpleAR Editor v0.1</strong>. Esta aplicación esta aún en fase beta, por favor reporta errores y sugerencias en el <a target='_blank' href='https://github.com/yg-apaza/simplear-editor/issues'>repositorio de Github</a>",
+    "footerMessage" : "<strong>SimpleAR Editor v0.1</strong>. Esta aplicación esta aún en fase beta, por favor reporta errores y sugerencias en el <a target='_blank' href='https://github.com/yg-apaza/simplear-editor/issues'>repositorio de Github</a>. Revisa las <a target='_blank' href='https://www.privacypolicies.com/privacy/view/ac89188bff4cd99d549e32117f637f4a'>Políticas de Privacidad</a>.",
     "logout": "Cerrar sesión",
     "pageNotFound": "No se encontró esta página :(",
     "lost": "Oops. Parece que te perdiste",
@@ -14,5 +14,13 @@
     "remove": "Eliminar",
     "title": "Título",
     "description": "Descripción",
-    "CREATE": "CREAR"
+    "CREATE": "CREAR",
+
+    "step1": "1. Agrega tus recursos",
+    "step2": "2. Únelos en componentes",
+    "step3": "3. Personaliza tus componentes",
+
+    "cats": "Gatos",
+    "earth": "Tierra",
+    "other": "Otro"
 }

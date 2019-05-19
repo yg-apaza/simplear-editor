@@ -18,6 +18,8 @@ import { ProjectListComponent } from './project-list/project-list.component';
 import { EditorComponent } from './editor/editor.component';
 import { FormsModule } from '@angular/forms';
 import { ProjectResolver } from './editor/project.resolver';
+import { MarkerComponent } from './editor/resources/marker/marker.component';
+import { PolyComponent } from './editor/resources/poly/poly.component';
 
 const l10nConfig: L10nConfig = {
   logger: {
@@ -50,7 +52,9 @@ const l10nConfig: L10nConfig = {
     LoginComponent,
     PageNotFoundComponent,
     ProjectListComponent,
-    EditorComponent
+    EditorComponent,
+    MarkerComponent,
+    PolyComponent
   ],
   imports: [
     BrowserModule,

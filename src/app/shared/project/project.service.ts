@@ -3,7 +3,7 @@ import { ProjectModel } from './project.model';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AuthService } from '../security/auth.service';
 import { Observable } from 'rxjs';
-import { switchMap, flatMap } from 'rxjs/operators';
+import { switchMap, flatMap, filter } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +40,7 @@ export class ProjectService {
 
   getAll(): Observable<ProjectModel[]> {
     return this.authService.getCurrentUser().pipe(
+      filter(user => user ? true : false),
       switchMap(user => this.db.list<ProjectModel>(`${this.projectsPath}/${user.uid}`, ref => ref.orderByKey()).valueChanges())
     );
   }

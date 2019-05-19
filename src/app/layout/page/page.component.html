@@ -1,5 +1,9 @@
-<app-nav></app-nav>
-<div class="mt-3 container">
-  <router-outlet></router-outlet>
+<div class="d-flex flex-column" style="height: 100%">
+  <div id="page-content">
+    <app-nav></app-nav>
+    <div class="mt-3 container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <app-footer></app-footer>
 </div>
-<app-footer></app-footer>

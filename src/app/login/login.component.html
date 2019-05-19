@@ -1,21 +1,25 @@
-<app-nav></app-nav>
-<div class="vertical-center">
-  <div class="container text-center">
-      <div class="row justify-content-md-center">
-        <div class="col-lg-6 col-md-8 col-sm-12">
-          <img src="assets/logo/logo_black.png" height="100" class="img-fluid mb-4">
-          <hr>
-        </div>
-      </div>
-      <div class="row justify-content-md-center">
-        <div class="col-lg-3 col-md-6 col-sm-12">
-          <div class="mt-2">
-            <button class="btn btn-danger btn-block" (click)="tryGoogleLogin()" l10nTranslate>
-              <i class="fab fa-google"></i> signInGoogle
-            </button>
+<div class="d-flex flex-column" style="height: 100%">
+  <div id="page-content">
+    <app-nav></app-nav>
+    <div class="vertical-center">
+      <div class="container text-center">
+          <div class="row justify-content-md-center">
+            <div class="col-lg-6 col-md-8 col-sm-12">
+              <img src="assets/logo/logo_black.png" height="100" class="img-fluid mb-4">
+              <hr>
+            </div>
           </div>
-        </div>
+          <div class="row justify-content-md-center">
+            <div class="col-lg-3 col-md-6 col-sm-12">
+              <div class="mt-2">
+                <button class="btn btn-danger btn-block" (click)="tryGoogleLogin()" l10nTranslate>
+                  <i class="fab fa-google"></i> signInGoogle
+                </button>
+              </div>
+            </div>
+          </div>
       </div>
+    </div>
   </div>
+  <app-footer></app-footer>
 </div>
-<app-footer></app-footer>
