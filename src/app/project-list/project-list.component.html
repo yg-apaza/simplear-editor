@@ -19,10 +19,10 @@
         <p class="card-text">{{ project.description }}</p>
         <div class="d-flex justify-content-end" l10nTranslate>
           <button class="btn btn-outline-primary" [routerLink]="['/edit', project.id]" placement="bottom" ngbTooltip="{{ 'edit' | translate: lang }}">
-            <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+            <i class="fas fa-pencil-alt"></i>
           </button>
           <button class="btn btn-outline-danger ml-1" (click)="deleteProject(project.id)" placement="bottom" ngbTooltip="{{ 'remove' | translate: lang }}">
-            <i class="far fa-trash-alt" aria-hidden="true"></i>
+            <i class="far fa-trash-alt"></i>
           </button>
         </div>
       </div>

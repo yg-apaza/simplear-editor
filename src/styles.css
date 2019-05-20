@@ -43,24 +43,21 @@ body {
 /*Check input with images*/
 
 label>input {
-    /* HIDE RADIO */
     visibility: hidden;
-    /* Makes input not-clickable */
     position: absolute;
-    /* Remove input from document flow */
     display: none;
 }
 
 label>input+img {
-    /* IMAGE STYLES */
     cursor: pointer;
     border: 8px solid transparent;
 }
 
 label>input:checked+img {
-    /* (RADIO CHECKED) IMAGE STYLES */
     border: 8px solid var(--success);
 }
+
+/* Vertical scrollbar on modals */
 
 .modal .modal-content{
     overflow:hidden;
@@ -68,4 +65,13 @@ label>input:checked+img {
 .modal-body{
     overflow-y:scroll;
 }
-    
+
+.img-wrap {
+    position: relative;
+}
+.img-wrap .delete {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    z-index: 100;
+}

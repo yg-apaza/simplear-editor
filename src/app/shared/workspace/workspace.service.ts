@@ -28,10 +28,16 @@ export class WorkspaceService {
     });
   }
 
-  getAllResources(projectId: string, resourceType: string): Observable<ResourceModel[]> {
+  getAllResources(projectId: string): Observable<ResourceModel[]> {
+    return this.db.list<ResourceModel>(
+      `${WorkspaceService.PATH}/${projectId}/${WorkspaceService.RESOURCE_PATH}`
+    ).valueChanges();
+  }
+
+  getAllResourcesByFilter(projectId: string, resourceType: string): Observable<ResourceModel[]> {
     return this.db.list<ResourceModel>(
       `${WorkspaceService.PATH}/${projectId}/${WorkspaceService.RESOURCE_PATH}`,
-      ref => ref.orderByKey()
+      ref => ref.orderByChild('type').equalTo(resourceType)
     ).valueChanges();
   }
 
@@ -41,7 +47,7 @@ export class WorkspaceService {
 
   isResourceNameTaken(projectId: string, name: string): Observable<boolean> {
     return this.getAllResources(projectId).pipe(
-      map(resources => resources.filter(r => r.name === name).length > 0),
+      map(resources => resources.filter(r => r.name === name).length > 0)
     );
   }
 }

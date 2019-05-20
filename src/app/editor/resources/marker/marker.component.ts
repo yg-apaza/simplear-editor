@@ -15,14 +15,14 @@ import Category from './category';
 })
 export class MarkerComponent implements OnInit {
 
-  public static TYPE_NAME = 'marker';
+  public static RESOURCE_TYPE = 'marker';
 
   @Language() lang: string;
   @Input() project: ProjectModel;
 
   // Add predefined marker resource
   addMarkerModalReference: NgbModalRef;
-  newMarker = new ResourceModel('', '', MarkerComponent.TYPE_NAME);
+  newMarker = new ResourceModel('', '', MarkerComponent.RESOURCE_TYPE);
   availableMarkers = AvailableMarkers;
   category = Category;
   markers: Observable<ResourceModel[]>;
@@ -33,7 +33,7 @@ export class MarkerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.markers = this.workspaceService.getAllResources(this.project.id);
+    this.markers = this.workspaceService.getAllResourcesByFilter(this.project.id, MarkerComponent.RESOURCE_TYPE);
   }
 
   openAddMarkerModal(content) {
@@ -42,8 +42,12 @@ export class MarkerComponent implements OnInit {
 
   addMarker() {
     this.workspaceService.createResource(this.project.id, this.newMarker);
-    this.newMarker = new ResourceModel('', '', MarkerComponent.TYPE_NAME);
+    this.newMarker = new ResourceModel('', '', MarkerComponent.RESOURCE_TYPE);
     this.addMarkerModalReference.close();
+  }
+
+  deleteMarker(resourceId: string) {
+    this.workspaceService.deleteResource(this.project.id, resourceId);
   }
 
 }

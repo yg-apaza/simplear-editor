@@ -1,7 +1,7 @@
 import { Directive, Input } from '@angular/core';
 import { AsyncValidator, AbstractControl, ValidationErrors, NG_ASYNC_VALIDATORS } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { map, catchError, take } from 'rxjs/operators';
+import { map, catchError, first } from 'rxjs/operators';
 import { WorkspaceService } from 'src/app/shared/workspace/workspace.service';
 
 @Directive({
@@ -20,7 +20,7 @@ export class UniqueResourceNameValidator implements AsyncValidator {
     return this.workspaceService.isResourceNameTaken(this.projectId, ctrl.value).pipe(
       map(isTaken => isTaken ? { uniqueResourceName: true } : null),
       catchError(() => null),
-      take(1)
+      first()
     );
   }
 }

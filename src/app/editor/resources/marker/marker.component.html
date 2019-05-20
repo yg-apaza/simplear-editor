@@ -13,7 +13,12 @@
         <ng-template ngbPanelContent>
           <div class="row">
             <div class="col-6 col-sm-3 col-md-6 col-lg-6" *ngFor="let m of markers | async">
-              <img src="{{ availableMarkers[m.id].path }}" class="img-fluid mb-1">
+              <div class="img-wrap">
+                  <button type="button" class="delete btn btn-danger btn-sm" (click)="deleteMarker(m.id)" >
+                    <i class="far fa-trash-alt"></i>
+                  </button>
+                  <img src="{{ availableMarkers[m.id].path }}" class="img-fluid mb-1">
+              </div>
               <p class="text-center">{{ m.name }}</p>
             </div>
           </div>
