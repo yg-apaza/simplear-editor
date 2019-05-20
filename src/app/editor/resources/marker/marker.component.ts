@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import AvailableMarkers from './available-markers';
 import { Language } from 'angular-l10n';
-import { ResourceModel } from 'src/app/shared/resource/resource.model';
+import { ResourceModel } from 'src/app/shared/workspace/resource.model';
+import { WorkspaceService } from 'src/app/shared/workspace/workspace.service';
+import { ProjectModel } from 'src/app/shared/project/project.model';
+import { Observable } from 'rxjs';
+import AvailableMarkers from './available-markers';
+import Category from './category';
 
 @Component({
   selector: 'app-marker',
@@ -14,17 +18,22 @@ export class MarkerComponent implements OnInit {
   public static TYPE_NAME = 'marker';
 
   @Language() lang: string;
+  @Input() project: ProjectModel;
 
   // Add predefined marker resource
   addMarkerModalReference: NgbModalRef;
-  availableMarkers = AvailableMarkers;
   newMarker = new ResourceModel('', '', MarkerComponent.TYPE_NAME);
+  availableMarkers = AvailableMarkers;
+  category = Category;
+  markers: Observable<ResourceModel[]>;
 
   constructor(
     private modalService: NgbModal,
+    private workspaceService: WorkspaceService
   ) { }
 
   ngOnInit() {
+    this.markers = this.workspaceService.getAllResources(this.project.id);
   }
 
   openAddMarkerModal(content) {
@@ -32,12 +41,7 @@ export class MarkerComponent implements OnInit {
   }
 
   addMarker() {
-    /*this.db.list(`resources/${this.project.id}/`).set(id, newPredefinedNaturalMarker);
-    this.db.list(`/previews/${this.previewKey}/resources/`).set(id, false);
-    this.predefinedNaturalMarkerResources.push(this.availablePredefinedNaturalMarkers[this.selectedPredefinedNaturalMarker].path);
-    this.predefinedNaturalMarkerResourcesIds.push(id);
-    this.resources[content] = newPredefinedNaturalMarker;
-    */
+    this.workspaceService.createResource(this.project.id, this.newMarker);
     this.newMarker = new ResourceModel('', '', MarkerComponent.TYPE_NAME);
     this.addMarkerModalReference.close();
   }

@@ -18,7 +18,7 @@ export class EditorComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.data.subscribe(routeData => {
-      if (routeData.project){
+      if (routeData.project) {
         this.project = routeData.project;
       } else {
         // TODO: Update when resolvers can handle errors

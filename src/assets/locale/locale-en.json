@@ -26,5 +26,6 @@
 
     "markers": "Markers",
     "addMarker": "Add marker",
-    "markerName": "Marker name"
+    "markerName": "Marker name",
+    "uniqueResourceName": "A resource with the same name already exists"
 }

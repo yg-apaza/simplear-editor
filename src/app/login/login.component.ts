@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
 
   tryGoogleLogin() {
     this.authService.doGoogleLogin().then(res => {
+      // TODO: Throwing eror: outside angular zone
       this.router.navigate(['/projects']);
     }).catch(err => {
       // TODO: Show error on UI

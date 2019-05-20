@@ -19,7 +19,8 @@ import { EditorComponent } from './editor/editor.component';
 import { FormsModule } from '@angular/forms';
 import { ProjectResolver } from './editor/project.resolver';
 import { MarkerComponent } from './editor/resources/marker/marker.component';
-import { PolyComponent } from './editor/resources/poly/poly.component';
+import { WorkspaceResolver } from './editor/workspace.resolver';
+import { UniqueResourceNameValidator } from './editor/resources/unique-resource-name-validator.directive';
 
 const l10nConfig: L10nConfig = {
   logger: {
@@ -54,7 +55,7 @@ const l10nConfig: L10nConfig = {
     ProjectListComponent,
     EditorComponent,
     MarkerComponent,
-    PolyComponent
+    UniqueResourceNameValidator
   ],
   imports: [
     BrowserModule,
@@ -67,7 +68,10 @@ const l10nConfig: L10nConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [ProjectResolver],
+  providers: [
+    ProjectResolver,
+    WorkspaceResolver
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

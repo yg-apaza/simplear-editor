@@ -10,18 +10,18 @@ import { switchMap, flatMap, filter } from 'rxjs/operators';
 })
 export class ProjectService {
 
-  projectsPath = '/projects';
+  public static PATH = 'projects';
 
   constructor(
     private db: AngularFireDatabase,
-    private authService: AuthService,
+    private authService: AuthService
   ) { }
 
   create(project: ProjectModel): Promise<string> {
     project.id = this.db.createPushId();
-    return new Promise<any>((resolve, reject) => {
+    return new Promise<string>((resolve, reject) => {
       this.authService.getCurrentUser().subscribe(user => {
-        this.db.list<ProjectModel>(`${this.projectsPath}/${user.uid}`)
+        this.db.list<ProjectModel>(`${ProjectService.PATH}/${user.uid}`)
           .set(project.id, project).then(() => {
             resolve(project.id);
           })
@@ -34,20 +34,20 @@ export class ProjectService {
 
   get(projectId: string): Observable<ProjectModel> {
     return this.authService.getCurrentUser().pipe(
-      switchMap(user => this.db.object<ProjectModel>(`${this.projectsPath}/${user.uid}/${projectId}`).valueChanges())
+      switchMap(user => this.db.object<ProjectModel>(`${ProjectService.PATH}/${user.uid}/${projectId}`).valueChanges())
     );
   }
 
   getAll(): Observable<ProjectModel[]> {
     return this.authService.getCurrentUser().pipe(
       filter(user => user ? true : false),
-      switchMap(user => this.db.list<ProjectModel>(`${this.projectsPath}/${user.uid}`, ref => ref.orderByKey()).valueChanges())
+      switchMap(user => this.db.list<ProjectModel>(`${ProjectService.PATH}/${user.uid}`, ref => ref.orderByKey()).valueChanges())
     );
   }
 
   delete(projectId: string): Promise<void> {
     return this.authService.getCurrentUser().pipe(
-      flatMap(user => this.db.object(`${this.projectsPath}/${user.uid}/${projectId}`).remove())
+      flatMap(user => this.db.object(`${ProjectService.PATH}/${user.uid}/${projectId}`).remove())
     ).toPromise();
   }
 }

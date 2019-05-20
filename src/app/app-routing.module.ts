@@ -7,8 +7,8 @@ import { ProjectListComponent } from './project-list/project-list.component';
 import { EditorComponent } from './editor/editor.component';
 import { GuestGuard } from './shared/security/guest.guard';
 import { LoggedInGuard } from './shared/security/logged-in.guard';
-import { OwnerGuard } from './shared/security/owner.guard';
 import { ProjectResolver } from './editor/project.resolver';
+import { WorkspaceResolver } from './editor/workspace.resolver';
 
 const routes: Routes = [
   {
@@ -34,9 +34,9 @@ const routes: Routes = [
       {
         path: 'edit/:id',
         component: EditorComponent,
-        canActivate: [OwnerGuard],
         resolve: {
-          project: ProjectResolver
+          project: ProjectResolver,
+          workspace: WorkspaceResolver
         },
         runGuardsAndResolvers: 'always'
       }

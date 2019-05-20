@@ -26,5 +26,6 @@
 
     "markers": "Marcadores",
     "addMarker": "Agregar marcador",
-    "markerName": "Nombre de marcador"
+    "markerName": "Nombre de marcador",
+    "uniqueResourceName": "Ya existe otro recurso con ese nombre"
 }

@@ -1,27 +1,35 @@
-const AvailableMarkers = [
-  {
-    title: 'cats',
-    content: {
-      cat: 'assets/markers/cat.jpg',
-      chemistry: 'assets/markers/chemistry.jpg'
-    }
+const AvailableMarkers = {
+  cat: {
+    path: 'assets/markers/cat.jpg',
+    category: 'cats'
   },
-  {
-    title: 'earth',
-    content: {
-      earth: 'assets/markers/earth.jpg',
-      stones: 'assets/markers/stones.jpg',
-      tree: 'assets/markers/tree.jpg'
-    }
+  chemistry: {
+    path: 'assets/markers/chemistry.jpg',
+    category: 'cats'
   },
-  {
-    title: 'other',
-    content: {
-      chess: 'assets/markers/chess.jpg',
-      fruits: 'assets/markers/fruits.jpg',
-      house: 'assets/markers/house.jpg'
-    }
+  earth: {
+    path: 'assets/markers/earth.jpg',
+    category: 'earth'
+  },
+  stones: {
+    path: 'assets/markers/stones.jpg',
+    category: 'earth'
+  },
+  tree: {
+    path: 'assets/markers/tree.jpg',
+    category: 'earth'
+  },
+  chess: {
+    path: 'assets/markers/chess.jpg',
+    category: 'other'
+  },
+  fruits: {
+    path: 'assets/markers/fruits.jpg',
+    category: 'other'
+  },
+  house: {
+    path: 'assets/markers/house.jpg'
   }
-];
+};
 
 export default AvailableMarkers;

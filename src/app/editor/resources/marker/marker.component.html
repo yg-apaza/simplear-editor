@@ -12,10 +12,10 @@
         </ng-template>
         <ng-template ngbPanelContent>
           <div class="row">
-            <!--div class="col-sm-3 col-md-6 col-lg-6" *ngFor="let path of availableMarkers[0].content; let i = index">
-              <img src="{{ path }}" class="img-fluid mb-1">
-              <p class="text-center">{{ predefinedNaturalMarkerResourcesIds[i] }}</p>
-            </div-->
+            <div class="col-6 col-sm-3 col-md-6 col-lg-6" *ngFor="let m of markers | async">
+              <img src="{{ availableMarkers[m.id].path }}" class="img-fluid mb-1">
+              <p class="text-center">{{ m.name }}</p>
+            </div>
           </div>
         </ng-template>
       </ngb-panel>
@@ -33,23 +33,28 @@
   <div class="modal-body">
     <form (ngSubmit)="addMarker()" #addMarkerForm="ngForm">
       
-      <div class="col-lg-12" *ngFor="let category of availableMarkers; let i = index">
-        <p>{{ category.title | translate: lang }}</p>
+      <div class="col-lg-12" *ngFor="let c of category">
+        <p>{{ c | translate: lang }}</p>
         <hr>
         <div class="form-row">
-          <div class="form-group col-6 col-sm-4 col-md-4 col-lg-4" *ngFor="let marker of availableMarkers[i].content | keyvalue">
-            <div class="form-check">
-              <label class="form-check-label">
-                <input class="form-check-input" type="radio" value="{{ marker.key }}" [(ngModel)]="newMarker.id" name="selectedMarker" required>
-                <img src="{{ marker.value }}" class="img-fluid">
-              </label>
+          <ng-container *ngFor="let marker of availableMarkers | keyvalue">
+            <div class="form-group col-6 col-sm-4 col-md-4 col-lg-4" *ngIf="marker.value.category == c">
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" value="{{ marker.key }}" [(ngModel)]="newMarker.id" name="selectedMarker" required>
+                  <img src="{{ marker.value.path }}" class="img-fluid">
+                </label>
+              </div>
             </div>
-          </div>
+          </ng-container>
         </div>
       </div>
-
+      <hr>
+      <div class="form-group">
+        <input type="text" id="name" class="form-control" placeholder="markerName" required appUniqueResourceNameValidator="{{ project.id }}" [(ngModel)]="newMarker.name" name="name" l10nTranslate l10n-placeholder #name="ngModel">
+        <div class="invalid-feedback" style="display:block" *ngIf="name.hasError('uniqueResourceName')" l10nTranslate>uniqueResourceName</div>
+      </div>
       <div class="modal-footer">
-        <input type="text" class="form-control" id="inputMarkerName" placeholder="markerName" required [(ngModel)]="newMarker.name" name="title" l10nTranslate l10n-placeholder>
         <button type="submit" class="btn btn-outline-success" [disabled]="!addMarkerForm.form.valid">OK</button>
       </div>
     </form>
