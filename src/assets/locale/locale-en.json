@@ -24,8 +24,13 @@
     "earth": "Earth",
     "other": "Other",
 
+    "resourceName": "Nombre de recurso",
     "markers": "Markers",
     "addMarker": "Add marker",
-    "markerName": "Marker name",
-    "uniqueResourceName": "A resource with the same name already exists"
+    "uniqueResourceName": "A resource with the same name already exists",
+
+    "polyObjects": "Poly objects",
+    "addPolyObject": "Add Poly object",
+    "noPolyObjectsFound": "We couldn't find any 3D Poly objects matching your search",
+    "enterKeywords": "Enter keywords"
 }

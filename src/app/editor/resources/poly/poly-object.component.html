@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col-12">
+    <ngb-accordion #acc="ngbAccordion" activeIds="static-1">
+      <ngb-panel id="static-1">
+        <ng-template ngbPanelHeader>
+          <div class="d-flex align-items-center justify-content-between">
+            <button ngbPanelToggle class="btn btn-link container-fluid text-left pl-0" l10nTranslate>polyObjects</button>
+            <button type="button" class="btn btn-sm btn-success ml-2" (click)="openAddPolyObjectModal(addPolyObjectModal)">
+              <i class="fa fa-plus"></i>
+            </button>
+          </div>
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <div class="row">
+            <div class="col-6 col-sm-3 col-md-6 col-lg-6" *ngFor="let p of polyObjects | async">
+              <div class="img-wrap">
+                  <button type="button" class="delete btn btn-danger btn-sm" (click)="deletePolyObject(p.id)" >
+                    <i class="far fa-trash-alt"></i>
+                  </button>
+                  <!--img src="{{ availableMarkers[m.id].path }}" class="img-fluid mb-1"-->
+              </div>
+              <p class="text-center">{{ p.name }}</p>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+  </div>
+</div>
+
+<ng-template #addPolyObjectModal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" l10nTranslate>addPolyObject</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="form-row mb-2">
+      <div class="col-10">
+        <input class="form-control" placeholder="enterKeywords" (keyup.enter)="searchKeywords()" [(ngModel)]="keywords" name="keywords" l10nTranslate l10n-placeholder>
+      </div>
+      <div class="col-2">
+        <button class="btn btn-primary btn-block" (click)="searchKeywords()">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
+    </div>
+
+    <form (ngSubmit)="addPolyObject()" #addPolyObjectForm="ngForm">
+      
+      <div class="card text-center text-secondary mb-2">
+        <div class="card-body">
+          <div *ngIf="showPlaceholderEmptySearch">
+            <p class="card-text">
+              <i class="fa fa-5x fa-search"></i>
+            </p>
+            <h5 class="card-text" l10nTranslate>noPolyObjectsFound</h5>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-6 col-md-4 col-sm-4" *ngFor="let polyResult of searchResult">
+              <label class="form-check-label">
+                <input class="form-check-input" type="radio" value="{{ polyResult.name.substring(7) }}" [(ngModel)]="newPolyObject.id" name="newPolyObjectId" required>
+                <img src="{{ polyResult.thumbnail.url }}" class="img-fluid">
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+      <div class="form-group">
+        <input type="text" id="name" class="form-control" placeholder="resourceName" required appUniqueResourceNameValidator="{{ project.id }}" [(ngModel)]="newPolyObject.name" name="name" l10nTranslate l10n-placeholder #name="ngModel">
+        <div class="invalid-feedback" style="display:block" *ngIf="name.hasError('uniqueResourceName')" l10nTranslate>uniqueResourceName</div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-success" [disabled]="!addPolyObjectForm.form.valid || !newPolyObject.id">OK</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+  

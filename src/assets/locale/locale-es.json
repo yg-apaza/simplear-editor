@@ -24,8 +24,13 @@
     "earth": "Tierra",
     "other": "Otro",
 
+    "resourceName": "Nombre de recurso",
     "markers": "Marcadores",
     "addMarker": "Agregar marcador",
-    "markerName": "Nombre de marcador",
-    "uniqueResourceName": "Ya existe otro recurso con ese nombre"
+    "uniqueResourceName": "Ya existe otro recurso con ese nombre",
+
+    "polyObjects": "Objetos Poly",
+    "addPolyObject": "Agregar objeto Poly",
+    "noPolyObjectsFound": "No se pudo encontrar objetos Poly 3D de acuerdo a tu búsqueda",
+    "enterKeywords": "Busca objetos Poly 3D"
 }

@@ -20,12 +20,13 @@ export class MarkerComponent implements OnInit {
   @Language() lang: string;
   @Input() project: ProjectModel;
 
-  // Add predefined marker resource
+  markers: Observable<ResourceModel[]>;
+
+  // Add marker resource
   addMarkerModalReference: NgbModalRef;
   newMarker = new ResourceModel('', '', MarkerComponent.RESOURCE_TYPE);
   availableMarkers = AvailableMarkers;
   category = Category;
-  markers: Observable<ResourceModel[]>;
 
   constructor(
     private modalService: NgbModal,

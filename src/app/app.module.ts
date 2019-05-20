@@ -21,6 +21,7 @@ import { ProjectResolver } from './editor/project.resolver';
 import { MarkerComponent } from './editor/resources/marker/marker.component';
 import { WorkspaceResolver } from './editor/workspace.resolver';
 import { UniqueResourceNameValidator } from './editor/resources/unique-resource-name-validator.directive';
+import { PolyObjectComponent } from './editor/resources/poly/poly-object.component';
 
 const l10nConfig: L10nConfig = {
   logger: {
@@ -55,7 +56,8 @@ const l10nConfig: L10nConfig = {
     ProjectListComponent,
     EditorComponent,
     MarkerComponent,
-    UniqueResourceNameValidator
+    UniqueResourceNameValidator,
+    PolyObjectComponent
   ],
   imports: [
     BrowserModule,

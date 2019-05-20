@@ -56,7 +56,7 @@
       </div>
       <hr>
       <div class="form-group">
-        <input type="text" id="name" class="form-control" placeholder="markerName" required appUniqueResourceNameValidator="{{ project.id }}" [(ngModel)]="newMarker.name" name="name" l10nTranslate l10n-placeholder #name="ngModel">
+        <input type="text" id="name" class="form-control" placeholder="resourceName" required appUniqueResourceNameValidator="{{ project.id }}" [(ngModel)]="newMarker.name" name="name" l10nTranslate l10n-placeholder #name="ngModel">
         <div class="invalid-feedback" style="display:block" *ngIf="name.hasError('uniqueResourceName')" l10nTranslate>uniqueResourceName</div>
       </div>
       <div class="modal-footer">
