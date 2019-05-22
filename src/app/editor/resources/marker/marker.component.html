@@ -46,9 +46,11 @@
             <div class="form-group col-6 col-sm-4 col-md-4 col-lg-4" *ngIf="marker.value.category == c">
               <div class="form-check">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="radio" value="{{ marker.key }}" [(ngModel)]="newMarker.content" name="selectedMarker" required>
+                  <input class="form-check-input" type="radio" value="{{ marker.key }}" [(ngModel)]="newMarker.content" name="content" appUniqueMarkerValidator="{{ project.id }}" required #content="ngModel">
                   <img src="{{ marker.value.path }}" class="img-fluid">
                 </label>
+                <!-- TODO: Show error message if the same marker already exists -->
+                <!--div class="invalid-feedback" style="display:block" *ngIf="last && content.hasError('uniqueMarker')" l10nTranslate>uniqueMarker</div-->
               </div>
             </div>
           </ng-container>

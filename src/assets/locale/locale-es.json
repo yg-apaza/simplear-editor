@@ -28,6 +28,7 @@
     "markers": "Marcadores",
     "addMarker": "Agregar marcador",
     "uniqueResourceName": "Ya existe otro recurso con ese nombre",
+    "uniqueMarker": "Ya existe un marcador con la misma imagen",
 
     "polyObjects": "Objetos Poly",
     "addPolyObject": "Agregar objeto Poly",

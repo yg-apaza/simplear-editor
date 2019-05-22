@@ -28,7 +28,8 @@ const AvailableMarkers = {
     category: 'other'
   },
   house: {
-    path: 'assets/markers/house.jpg'
+    path: 'assets/markers/house.jpg',
+    category: 'other'
   }
 };
 

@@ -28,6 +28,7 @@
     "markers": "Markers",
     "addMarker": "Add marker",
     "uniqueResourceName": "A resource with the same name already exists",
+    "uniqueMarker": "A marker with the same image already exists",
 
     "polyObjects": "Poly objects",
     "addPolyObject": "Add Poly object",

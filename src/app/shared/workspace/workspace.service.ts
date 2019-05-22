@@ -55,4 +55,10 @@ export class WorkspaceService {
       map(resources => resources.filter(r => r.name === name).length > 0)
     );
   }
+
+  isResourceContentTaken(projectId: string, content: string, type: string): Observable<boolean> {
+    return this.getAllResources(projectId).pipe(
+      map(resources => resources.filter(r => (r.type === type && r.content === content)).length > 0)
+    );
+  }
 }
