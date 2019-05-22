@@ -16,7 +16,12 @@ export class WorkspaceService {
     private db: AngularFireDatabase
   ) { }
 
+  deleteWorkspace(projectId: string): Promise<void> {
+    return this.db.object(`${WorkspaceService.PATH}/${projectId}`).remove();
+  }
+
   createResource(projectId: string, resource: ResourceModel): Promise<string> {
+    resource.id = this.db.createPushId();
     return new Promise<string>((resolve, reject) => {
       this.db.list<ResourceModel>(`${WorkspaceService.PATH}/${projectId}/${WorkspaceService.RESOURCE_PATH}`)
         .set(resource.id, resource).then(() => {

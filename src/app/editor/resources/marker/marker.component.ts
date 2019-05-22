@@ -24,7 +24,7 @@ export class MarkerComponent implements OnInit {
 
   // Add marker resource
   addMarkerModalReference: NgbModalRef;
-  newMarker = new ResourceModel('', '', MarkerComponent.RESOURCE_TYPE);
+  newMarker = new ResourceModel('', '', '', '', MarkerComponent.RESOURCE_TYPE);
   availableMarkers = AvailableMarkers;
   category = Category;
 
@@ -42,8 +42,9 @@ export class MarkerComponent implements OnInit {
   }
 
   addMarker() {
+    this.newMarker.thumbnail = this.availableMarkers[this.newMarker.content].path;
     this.workspaceService.createResource(this.project.id, this.newMarker);
-    this.newMarker = new ResourceModel('', '', MarkerComponent.RESOURCE_TYPE);
+    this.newMarker = new ResourceModel('', '', '', '', MarkerComponent.RESOURCE_TYPE);
     this.addMarkerModalReference.close();
   }
 

@@ -29,7 +29,7 @@ export class PolyObjectComponent implements OnInit {
 
   // Add poly object resource
   addPolyObjectModalReference: NgbModalRef;
-  newPolyObject = new ResourceModel('', '', PolyObjectComponent.RESOURCE_TYPE);
+  newPolyObject = new ResourceModel('', '', '', '', PolyObjectComponent.RESOURCE_TYPE);
 
   constructor(
     private modalService: NgbModal,
@@ -56,7 +56,7 @@ export class PolyObjectComponent implements OnInit {
         },
         err => {
           // TODO: Show error message
-          console.log('Error occurred with Poly Service');
+          console.error('Error occurred with Poly Service');
         }
       );
   }
@@ -66,9 +66,21 @@ export class PolyObjectComponent implements OnInit {
   }
 
   addPolyObject() {
-    this.workspaceService.createResource(this.project.id, this.newPolyObject);
-    this.newPolyObject = new ResourceModel('', '', PolyObjectComponent.RESOURCE_TYPE);
-    this.addPolyObjectModalReference.close();
+    this.polyService.getAsset(this.newPolyObject.content).subscribe(
+      res => {
+        this.newPolyObject.thumbnail = res.thumbnail.url;
+        this.workspaceService.createResource(this.project.id, this.newPolyObject);
+        this.newPolyObject = new ResourceModel('', '', '', '', PolyObjectComponent.RESOURCE_TYPE);
+        this.addPolyObjectModalReference.close();
+      },
+      err => {
+        console.error('Couldn\'t get thumbnail for Poly object');
+      }
+    );
+  }
+
+  deletePolyObject(resourceId: string) {
+    this.workspaceService.deleteResource(this.project.id, resourceId);
   }
 
 }

@@ -12,14 +12,14 @@
         </ng-template>
         <ng-template ngbPanelContent>
           <div class="row">
-            <div class="col-6 col-sm-3 col-md-6 col-lg-6" *ngFor="let m of markers | async">
+            <div class="col-6 col-sm-3 col-md-6 col-lg-6 text-center" *ngFor="let m of markers | async">
               <div class="img-wrap">
-                  <button type="button" class="delete btn btn-danger btn-sm" (click)="deleteMarker(m.id)" >
-                    <i class="far fa-trash-alt"></i>
-                  </button>
-                  <img src="{{ availableMarkers[m.id].path }}" class="img-fluid mb-1">
+                <button type="button" class="delete btn btn-danger btn-sm" (click)="deleteMarker(m.id)" >
+                  <i class="far fa-trash-alt"></i>
+                </button>
+                <img src="{{ m.thumbnail }}" class="img-fluid">
               </div>
-              <p class="text-center">{{ m.name }}</p>
+              <small>{{ m.name }}</small>
             </div>
           </div>
         </ng-template>
@@ -46,7 +46,7 @@
             <div class="form-group col-6 col-sm-4 col-md-4 col-lg-4" *ngIf="marker.value.category == c">
               <div class="form-check">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="radio" value="{{ marker.key }}" [(ngModel)]="newMarker.id" name="selectedMarker" required>
+                  <input class="form-check-input" type="radio" value="{{ marker.key }}" [(ngModel)]="newMarker.content" name="selectedMarker" required>
                   <img src="{{ marker.value.path }}" class="img-fluid">
                 </label>
               </div>

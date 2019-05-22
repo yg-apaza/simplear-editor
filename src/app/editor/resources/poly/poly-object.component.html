@@ -12,14 +12,14 @@
         </ng-template>
         <ng-template ngbPanelContent>
           <div class="row">
-            <div class="col-6 col-sm-3 col-md-6 col-lg-6" *ngFor="let p of polyObjects | async">
+            <div class="col-6 col-sm-3 col-md-6 col-lg-6 text-center" *ngFor="let p of polyObjects | async">
               <div class="img-wrap">
-                  <button type="button" class="delete btn btn-danger btn-sm" (click)="deletePolyObject(p.id)" >
-                    <i class="far fa-trash-alt"></i>
-                  </button>
-                  <!--img src="{{ availableMarkers[m.id].path }}" class="img-fluid mb-1"-->
+                <button type="button" class="delete btn btn-danger btn-sm" (click)="deletePolyObject(p.id)" >
+                  <i class="far fa-trash-alt"></i>
+                </button>
+                <img src="{{ p.thumbnail }}" class="img-fluid">
               </div>
-              <p class="text-center">{{ p.name }}</p>
+              <small>{{ p.name }}</small>
             </div>
           </div>
         </ng-template>
@@ -61,7 +61,7 @@
           <div class="form-row">
             <div class="form-group col-6 col-md-4 col-sm-4" *ngFor="let polyResult of searchResult">
               <label class="form-check-label">
-                <input class="form-check-input" type="radio" value="{{ polyResult.name.substring(7) }}" [(ngModel)]="newPolyObject.id" name="newPolyObjectId" required>
+                <input class="form-check-input" type="radio" value="{{ polyResult.name.substring(7) }}" [(ngModel)]="newPolyObject.content" name="newPolyObjectId" required>
                 <img src="{{ polyResult.thumbnail.url }}" class="img-fluid">
               </label>
             </div>
@@ -75,7 +75,7 @@
         <div class="invalid-feedback" style="display:block" *ngIf="name.hasError('uniqueResourceName')" l10nTranslate>uniqueResourceName</div>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-outline-success" [disabled]="!addPolyObjectForm.form.valid || !newPolyObject.id">OK</button>
+        <button type="submit" class="btn btn-outline-success" [disabled]="!addPolyObjectForm.form.valid || !newPolyObject.content">OK</button>
       </div>
     </form>
   </div>

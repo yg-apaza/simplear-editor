@@ -24,7 +24,7 @@
     "earth": "Earth",
     "other": "Other",
 
-    "resourceName": "Nombre de recurso",
+    "resourceName": "Resource name",
     "markers": "Markers",
     "addMarker": "Add marker",
     "uniqueResourceName": "A resource with the same name already exists",
