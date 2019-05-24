@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { ResourceModel } from 'src/app/shared/workspace/resource.model';
 import { ComponentModel } from 'src/app/shared/workspace/component.model';
 import { WorkspaceService } from 'src/app/shared/workspace/workspace.service';
+import { Language } from 'angular-l10n';
 
 @Component({
   selector: 'app-augment-marker',
@@ -15,6 +16,7 @@ export class AugmentMarkerComponent implements OnInit {
 
   public static COMPONENT_TYPE = 'augment_marker';
 
+  @Language() lang: string;
   @Input() project: ProjectModel;
   @Input() resources: Observable<ResourceModel[]>;
 

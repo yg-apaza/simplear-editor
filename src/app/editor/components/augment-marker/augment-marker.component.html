@@ -54,7 +54,7 @@
         <div class="invalid-feedback" style="display:block" *ngIf="marker.hasError('resourceExists')" l10nTranslate>resourceExists</div>
       </div>
       <div class="modal-footer">
-        <small l10nTranslate>augmentResource</small> <strong class="text-success">{{ newResource.name || '_____' }}</strong> <small l10nTranslate>onMarker</small> <strong class="text-success">{{ newMarker.name || '_____' }}</strong>
+        <small>{{ 'augmentResource' | translate:lang }} <strong class="text-success">{{ newResource.name || '_____' }}</strong> {{ 'onMarker' | translate:lang }} <strong class="text-success">{{ newMarker.name || '_____' }}</strong></small>
         <button type="submit" class="btn btn-outline-success" [disabled]="!addAugmentMarkerForm.form.valid">OK</button>
       </div>
     </form>
