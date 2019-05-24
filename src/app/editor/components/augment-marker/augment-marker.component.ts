@@ -18,7 +18,10 @@ export class AugmentMarkerComponent implements OnInit {
 
   @Language() lang: string;
   @Input() project: ProjectModel;
-  @Input() resources: Observable<ResourceModel[]>;
+  resources: Observable<ResourceModel[]>;
+  components: Observable<ComponentModel[]>;
+
+  selectedComponent: ComponentModel;
 
   newMarker = new ResourceModel('', '', '', '', '');
   newResource = new ResourceModel('', '', '', '', '');
@@ -31,7 +34,10 @@ export class AugmentMarkerComponent implements OnInit {
     private workspaceService: WorkspaceService
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.resources = this.workspaceService.getAllResources(this.project.id);
+    this.components = this.workspaceService.getAllComponentsByType(this.project.id, AugmentMarkerComponent.COMPONENT_TYPE);
+  }
 
   openAddAugmentMarkerModal(content) {
     this.addAugmentMarkerModalReference = this.modalService.open(content);

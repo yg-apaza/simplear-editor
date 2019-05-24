@@ -1,25 +1,17 @@
-<div class="row">
-  <div class="col-12">
-    <button type="button" class="btn btn-sm btn-success my-2" (click)="openAddAugmentMarkerModal(addAugmentMarkerModal)">
-      <i class="fa fa-cube"></i> Augment marker
-    </button>
-    <!--div class="row">
-      <div class="col-6 col-sm-3 col-md-6 col-lg-6 text-center" *ngFor="let m of markers | async">
-        <div class="img-wrap">
-          <button type="button" class="delete btn btn-danger btn-sm" (click)="deleteMarker(m.id)" >
-            <i class="far fa-trash-alt"></i>
-          </button>
-          <img src="{{ m.thumbnail }}" class="img-fluid">
-        </div>
-        <small>{{ m.name }}</small>
-      </div>
-    </div-->
+<button type="button" class="btn btn-sm btn-success my-2" (click)="openAddAugmentMarkerModal(addAugmentMarkerModal)" l10nTranslate>
+  <i class="fa fa-cube"></i> augmentMarker
+</button>
+<div class="col-12" *ngFor="let c of components | async">
+  <div class="d-flex flex-row">
+    <input class="form-check-input" type="radio" [value]="c" [(ngModel)]="selectedComponent" name="selectedComponent" required>
+    <small>{{ 'augmentResource' | translate:lang }} <strong class="text-success">{{ c.inputs[0] }}</strong> {{ 'onMarker' | translate:lang }} <strong class="text-success">{{ c.inputs[1] }}</strong></small>
+    <br>
   </div>
 </div>
 
 <ng-template #addAugmentMarkerModal let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title" l10nTranslate>augmentMarker</h4>
+    <h4 class="modal-title" l10nTranslate>augmentResourceOnMarker</h4>
     <button type="button" class="close" aria-label="Close" (click)="d()">
       <span aria-hidden="true">&times;</span>
     </button>

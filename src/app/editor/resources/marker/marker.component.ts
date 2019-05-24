@@ -7,7 +7,6 @@ import { ProjectModel } from 'src/app/shared/project/project.model';
 import { Observable } from 'rxjs';
 import AvailableMarkers from './available-markers';
 import Category from './category';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-marker',
@@ -20,7 +19,6 @@ export class MarkerComponent implements OnInit {
 
   @Language() lang: string;
   @Input() project: ProjectModel;
-  @Input() resources: Observable<ResourceModel[]>;
   markers: Observable<ResourceModel[]>;
 
   // Add marker resource
@@ -35,9 +33,7 @@ export class MarkerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.markers = this.resources.pipe(
-      map(resources => resources.filter(r => r.type === MarkerComponent.RESOURCE_TYPE))
-    );
+    this.markers = this.workspaceService.getAllResourcesByType(this.project.id, MarkerComponent.RESOURCE_TYPE);
   }
 
   openAddMarkerModal(content) {
