@@ -46,7 +46,7 @@ export class AugmentMarkerComponent implements OnInit {
   }
 
   equalResources(r1: ResourceModel, r2: ResourceModel) {
-    return r1.name === r2.name;
+    return r1.name === r2.name && r1.content === r2.content;
   }
 
 }

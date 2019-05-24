@@ -40,5 +40,6 @@
     "resource": "Resource",
     "resourceExists": "Selected resource doesn't exists",
     "augmentResource": "Augment resource",
-    "onMarker": "on marker"
+    "onMarker": "on marker",
+    "markerAlreadyUsed": "Marker was already used for augment other resource"
 }

@@ -40,5 +40,6 @@
     "resource": "Recurso",
     "resourceExists": "El recurso seleccionado no existe",
     "augmentResource": "Aumentar el recurso",
-    "onMarker": "sobre el marcador"
+    "onMarker": "sobre el marcador",
+    "markerAlreadyUsed": "El marcador ya fue utilizado para aumentar otro recurso"
 }

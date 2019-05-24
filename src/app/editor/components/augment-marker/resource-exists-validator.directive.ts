@@ -1,14 +1,14 @@
 import { Directive, Input } from '@angular/core';
-import { NG_ASYNC_VALIDATORS, AbstractControl, ValidationErrors } from '@angular/forms';
+import { NG_ASYNC_VALIDATORS, AbstractControl, ValidationErrors, AsyncValidator } from '@angular/forms';
 import { WorkspaceService } from 'src/app/shared/workspace/workspace.service';
 import { Observable } from 'rxjs';
 import { catchError, first, map } from 'rxjs/operators';
 
 @Directive({
   selector: '[appResourceExistsValidator]',
-  providers: [{provide: NG_ASYNC_VALIDATORS, useExisting: ResourceExistsValidatorDirective, multi: true}]
+  providers: [{provide: NG_ASYNC_VALIDATORS, useExisting: ResourceExistsValidator, multi: true}]
 })
-export class ResourceExistsValidatorDirective {
+export class ResourceExistsValidator implements AsyncValidator {
 
   @Input('appResourceExistsValidator') projectId: string;
 

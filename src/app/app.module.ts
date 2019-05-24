@@ -24,7 +24,8 @@ import { UniqueResourceNameValidator } from './editor/resources/unique-resource-
 import { PolyObjectComponent } from './editor/resources/poly/poly-object.component';
 import { UniqueMarkerValidator } from './editor/resources/marker/unique-marker-validator.directive';
 import { AugmentMarkerComponent } from './editor/components/augment-marker/augment-marker.component';
-import { ResourceExistsValidatorDirective } from './editor/components/augment-marker/resource-exists-validator.directive';
+import { ResourceExistsValidator } from './editor/components/augment-marker/resource-exists-validator.directive';
+import { ResourceUsedAugmentMarkerValidator } from './editor/components/augment-marker/resource-used-augment-marker-validator.directive';
 
 const l10nConfig: L10nConfig = {
   logger: {
@@ -63,7 +64,8 @@ const l10nConfig: L10nConfig = {
     UniqueResourceNameValidator,
     UniqueMarkerValidator,
     AugmentMarkerComponent,
-    ResourceExistsValidatorDirective
+    ResourceExistsValidator,
+    ResourceUsedAugmentMarkerValidator
   ],
   imports: [
     BrowserModule,

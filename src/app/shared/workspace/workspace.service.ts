@@ -35,10 +35,10 @@ export class WorkspaceService {
     });
   }
 
-  getResourceByName(projectId: string, name: string): Observable<ResourceModel> {
+  getResourceByName(projectId: string, resourceName: string): Observable<ResourceModel> {
     return this.db.list<ResourceModel>(
       `${WorkspaceService.PATH}/${projectId}/${WorkspaceService.RESOURCE_PATH}`,
-      ref => ref.orderByChild('name').equalTo(name)
+      ref => ref.orderByChild('name').equalTo(resourceName)
     ).valueChanges().pipe(
       map(resources => resources[0])
     );
@@ -61,15 +61,15 @@ export class WorkspaceService {
     return this.db.object(`${WorkspaceService.PATH}/${projectId}/${WorkspaceService.RESOURCE_PATH}/${resourceId}`).remove();
   }
 
-  isResourceNameTaken(projectId: string, name: string): Observable<boolean> {
+  isResourceNameTaken(projectId: string, resourceName: string): Observable<boolean> {
     return this.getAllResources(projectId).pipe(
-      map(resources => resources.filter(r => r.name === name).length > 0)
+      map(resources => resources.filter(r => r.name === resourceName).length > 0)
     );
   }
 
-  isResourceContentTaken(projectId: string, content: string, type: string): Observable<boolean> {
+  isResourceContentTaken(projectId: string, resourceContent: string, resourceType: string): Observable<boolean> {
     return this.getAllResources(projectId).pipe(
-      map(resources => resources.filter(r => (r.type === type && r.content === content)).length > 0)
+      map(resources => resources.filter(r => (r.type === resourceType && r.content === resourceContent)).length > 0)
     );
   }
 
@@ -84,5 +84,18 @@ export class WorkspaceService {
           reject();
         });
     });
+  }
+
+  getAllComponentsByType(projectId: string, componentType: string): Observable<ComponentModel[]> {
+    return this.db.list<ComponentModel>(
+      `${WorkspaceService.PATH}/${projectId}/${WorkspaceService.COMPONENT_PATH}`,
+      ref => ref.orderByChild('type').equalTo(componentType)
+    ).valueChanges();
+  }
+
+  isResourceUsedInComponent(projectId: string, resourceName: string, resourceType: string): Observable<boolean> {
+    return this.getAllComponentsByType(projectId, resourceType).pipe(
+      map(components => components.filter(c => c.inputs.includes(resourceName)).length > 0)
+    );
   }
 }
