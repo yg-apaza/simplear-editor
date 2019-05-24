@@ -33,5 +33,12 @@
     "polyObjects": "Objetos Poly",
     "addPolyObject": "Agregar objeto Poly",
     "noPolyObjectsFound": "No se pudo encontrar objetos Poly 3D de acuerdo a tu búsqueda",
-    "enterKeywords": "Busca objetos Poly 3D"
+    "enterKeywords": "Busca objetos Poly 3D",
+
+    "augmentMarker": "Aumentar un recurso sobre un marcador",
+    "marker": "Marcador",
+    "resource": "Recurso",
+    "resourceExists": "El recurso seleccionado no existe",
+    "augmentResource": "Aumentar el recurso",
+    "onMarker": "sobre el marcador"
 }

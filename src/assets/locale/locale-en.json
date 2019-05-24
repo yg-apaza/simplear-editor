@@ -33,5 +33,12 @@
     "polyObjects": "Poly objects",
     "addPolyObject": "Add Poly object",
     "noPolyObjectsFound": "We couldn't find any 3D Poly objects matching your search",
-    "enterKeywords": "Enter keywords"
+    "enterKeywords": "Enter keywords",
+
+    "augmentMarker": "Augment a resource on a marker",
+    "marker": "Marker",
+    "resource": "Resource",
+    "resourceExists": "Selected resource doesn't exists",
+    "augmentResource": "Augment resource",
+    "onMarker": "on marker"
 }

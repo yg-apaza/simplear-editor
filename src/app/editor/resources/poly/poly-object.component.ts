@@ -7,6 +7,7 @@ import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { WorkspaceService } from 'src/app/shared/workspace/workspace.service';
 import { PolyService } from 'src/app/shared/poly/poly.service';
 import { Asset } from 'src/app/shared/poly/asset';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-poly-object',
@@ -19,6 +20,7 @@ export class PolyObjectComponent implements OnInit {
 
   @Language() lang: string;
   @Input() project: ProjectModel;
+  @Input() resources: Observable<ResourceModel[]>;
 
   polyObjects: Observable<ResourceModel[]>;
 
@@ -38,7 +40,9 @@ export class PolyObjectComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.polyObjects = this.workspaceService.getAllResourcesByFilter(this.project.id, PolyObjectComponent.RESOURCE_TYPE);
+    this.polyObjects = this.resources.pipe(
+      map(resources => resources.filter(r => r.type === PolyObjectComponent.RESOURCE_TYPE))
+    );
   }
 
   searchKeywords() {

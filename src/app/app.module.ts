@@ -23,6 +23,8 @@ import { WorkspaceResolver } from './editor/workspace.resolver';
 import { UniqueResourceNameValidator } from './editor/resources/unique-resource-name-validator.directive';
 import { PolyObjectComponent } from './editor/resources/poly/poly-object.component';
 import { UniqueMarkerValidator } from './editor/resources/marker/unique-marker-validator.directive';
+import { AugmentMarkerComponent } from './editor/components/augment-marker/augment-marker.component';
+import { ResourceExistsValidatorDirective } from './editor/components/augment-marker/resource-exists-validator.directive';
 
 const l10nConfig: L10nConfig = {
   logger: {
@@ -59,7 +61,9 @@ const l10nConfig: L10nConfig = {
     MarkerComponent,
     PolyObjectComponent,
     UniqueResourceNameValidator,
-    UniqueMarkerValidator
+    UniqueMarkerValidator,
+    AugmentMarkerComponent,
+    ResourceExistsValidatorDirective
   ],
   imports: [
     BrowserModule,
