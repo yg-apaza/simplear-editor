@@ -22,6 +22,8 @@ export class PolyObjectComponent implements OnInit {
 
   polyObjects: Observable<ResourceModel[]>;
 
+  showErrorMessage = false;
+
   // Search poly objects
   keywords: string;
   searchResult: Array<Asset>;
@@ -81,7 +83,15 @@ export class PolyObjectComponent implements OnInit {
 
   // TODO: Use the same method for delete marker and poly object
   deletePolyObject(resourceId: string) {
-    this.workspaceService.deleteResource(this.project.id, resourceId);
+    this.workspaceService.isResourceUsedInComponent(this.project.id, resourceId).subscribe(
+      isUsed => {
+        if (!isUsed) {
+          this.workspaceService.deleteResource(this.project.id, resourceId);
+        } else {
+          this.showErrorMessage = true;
+        }
+      }
+    );
   }
 
 }

@@ -34,6 +34,7 @@
     "addPolyObject": "Agregar objeto Poly",
     "noPolyObjectsFound": "No se pudo encontrar objetos Poly 3D de acuerdo a tu búsqueda",
     "enterKeywords": "Busca objetos Poly 3D",
+    "resourceUsedByComponent": "El recurso está siendo usado por un componente. Primero borra el componente asociado.",
 
     "augmentResourceOnMarker": "Aumentar recurso sobre un marcador",
     "augmentMarker": "Aumentar marcador",

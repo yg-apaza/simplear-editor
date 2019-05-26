@@ -21,6 +21,8 @@ export class MarkerComponent implements OnInit {
   @Input() project: ProjectModel;
   markers: Observable<ResourceModel[]>;
 
+  showErrorMessage = false;
+
   // Add marker resource
   addMarkerModalReference: NgbModalRef;
   newMarker = new ResourceModel('', '', '', '', MarkerComponent.RESOURCE_TYPE);
@@ -49,7 +51,15 @@ export class MarkerComponent implements OnInit {
 
   // TODO: Use the same method for delete marker and poly object
   deleteMarker(resourceId: string) {
-    this.workspaceService.deleteResource(this.project.id, resourceId);
+    this.workspaceService.isResourceUsedInComponent(this.project.id, resourceId).subscribe(
+      isUsed => {
+        if (!isUsed) {
+          this.workspaceService.deleteResource(this.project.id, resourceId);
+        } else {
+          this.showErrorMessage = true;
+        }
+      }
+    );
   }
 
 }

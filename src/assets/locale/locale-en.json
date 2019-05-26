@@ -34,6 +34,7 @@
     "addPolyObject": "Add Poly object",
     "noPolyObjectsFound": "We couldn't find any 3D Poly objects matching your search",
     "enterKeywords": "Enter keywords",
+    "resourceUsedByComponent": "Resource is being used by a component. Delete the component associated first.",
 
     "augmentResourceOnMarker": "Augment a resource on a marker",
     "augmentMarker": "Augment marker",

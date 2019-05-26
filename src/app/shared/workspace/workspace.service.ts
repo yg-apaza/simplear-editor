@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 import { ResourceModel } from './resource.model';
-import { map } from 'rxjs/operators';
+import { map, first } from 'rxjs/operators';
 import { ComponentModel } from './component.model';
 
 @Injectable({
@@ -69,19 +69,29 @@ export class WorkspaceService {
 
   isResourceNameTaken(projectId: string, resourceName: string): Observable<boolean> {
     return this.getAllResources(projectId).pipe(
-      map(resources => resources.filter(r => r.name === resourceName).length > 0)
+      map(resources => resources.filter(r => r.name === resourceName).length > 0),
+      first()
     );
   }
 
   isResourceContentTaken(projectId: string, resourceContent: string, resourceType: string): Observable<boolean> {
     return this.getAllResources(projectId).pipe(
-      map(resources => resources.filter(r => (r.type === resourceType && r.content === resourceContent)).length > 0)
+      map(resources => resources.filter(r => (r.type === resourceType && r.content === resourceContent)).length > 0),
+      first()
     );
   }
 
-  isResourceUsedInComponent(projectId: string, resource: ResourceModel, resourceType: string): Observable<boolean> {
+  isResourceUsedInComponent(projectId: string, resourceId: string): Observable<boolean> {
+    return this.getAllComponents(projectId).pipe(
+      map(components => components.filter(c => c.inputs.some(r => r.id === resourceId)).length > 0),
+      first()
+    );
+  }
+
+  isResourceUsedInComponentByType(projectId: string, resourceId: string, resourceType: string): Observable<boolean> {
     return this.getAllComponentsByType(projectId, resourceType).pipe(
-      map(components => components.filter(c => c.inputs.some(r => r.id === resource.id)).length > 0)
+      map(components => components.filter(c => c.inputs.some(r => r.id === resourceId)).length > 0),
+      first()
     );
   }
 
@@ -96,6 +106,12 @@ export class WorkspaceService {
           reject();
         });
     });
+  }
+
+  getAllComponents(projectId: string): Observable<ComponentModel[]> {
+    return this.db.list<ComponentModel>(
+      `${WorkspaceService.PATH}/${projectId}/${WorkspaceService.COMPONENT_PATH}`
+    ).valueChanges();
   }
 
   getAllComponentsByType(projectId: string, componentType: string): Observable<ComponentModel[]> {

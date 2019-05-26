@@ -2,7 +2,7 @@ import { Directive, Input } from '@angular/core';
 import { NG_ASYNC_VALIDATORS, AsyncValidator, AbstractControl, ValidationErrors } from '@angular/forms';
 import { WorkspaceService } from 'src/app/shared/workspace/workspace.service';
 import { Observable } from 'rxjs';
-import { map, catchError, first } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import { MarkerComponent } from './marker.component';
 
 @Directive({
@@ -20,8 +20,7 @@ export class UniqueMarkerValidator implements AsyncValidator {
   validate(ctrl: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
     return this.workspaceService.isResourceContentTaken(this.projectId, ctrl.value, MarkerComponent.RESOURCE_TYPE).pipe(
       map(isTaken => isTaken ? { uniqueMarker: true } : null),
-      catchError(() => null),
-      first()
+      catchError(() => null)
     );
   }
 
