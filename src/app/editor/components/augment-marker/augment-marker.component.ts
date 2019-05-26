@@ -18,6 +18,8 @@ export class AugmentMarkerComponent implements OnInit {
 
   @Language() lang: string;
   @Input() project: ProjectModel;
+  @Input() componentSelected: string;
+
   resources: Observable<ResourceModel[]>;
   components: Observable<ComponentModel[]>;
 
@@ -62,6 +64,10 @@ export class AugmentMarkerComponent implements OnInit {
   // TODO: Use the same method for deleting components
   deleteAugmentMarker(componentId: string) {
     this.workspaceService.deleteComponent(this.project.id, componentId);
+  }
+
+  selectComponent(componentId: string) {
+    this.componentSelected = componentId;
   }
 
 }

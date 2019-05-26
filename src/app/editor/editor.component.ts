@@ -10,6 +10,7 @@ import { ProjectModel } from '../shared/project/project.model';
 export class EditorComponent implements OnInit {
 
   project = new ProjectModel('', '', '');
+  componentSelected: string;
 
   constructor(
     private router: Router,

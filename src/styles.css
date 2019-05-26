@@ -83,3 +83,8 @@ label>input:checked+img {
     right: 4px;
     z-index: 100;
 }
+
+.card-selected {
+    border: 5px solid var(--success) !important;
+    border-style: dashed !important;
+}
