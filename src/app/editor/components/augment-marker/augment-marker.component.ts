@@ -59,4 +59,9 @@ export class AugmentMarkerComponent implements OnInit {
     return r1.name === r2.name && r1.content === r2.content;
   }
 
+  // TODO: Use the same method for deleting components
+  deleteAugmentMarker(componentId: string) {
+    this.workspaceService.deleteComponent(this.project.id, componentId);
+  }
+
 }

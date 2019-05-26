@@ -79,6 +79,7 @@ export class PolyObjectComponent implements OnInit {
     );
   }
 
+  // TODO: Use the same method for delete marker and poly object
   deletePolyObject(resourceId: string) {
     this.workspaceService.deleteResource(this.project.id, resourceId);
   }

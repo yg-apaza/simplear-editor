@@ -3,17 +3,20 @@
 </button>
 <div class="row">
   <div class="col-12 col-sm-6 col-md-6 col-lg-12" *ngFor="let c of components | async">
-    <div class="card text-center mb-1">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-5"><img class="img-fluid" src="{{ c.inputs[0].thumbnail }}"></div>
-            <div class="col-2"><br><i class="fas fa-arrows-alt-h"></i></div>
-            <div class="col-5"><img class="img-fluid" src="{{ c.inputs[1].thumbnail }}"></div>
-          </div>
+    <div class="card text-center mb-1 over-wrap">
+      <button type="button" class="delete-up btn btn-danger btn-sm" (click)="deleteAugmentMarker(c.id)" >
+        <i class="far fa-trash-alt"></i>
+      </button>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-5"><img class="img-fluid" src="{{ c.inputs[0].thumbnail }}"></div>
+          <div class="col-2"><br><i class="fas fa-arrows-alt-h"></i></div>
+          <div class="col-5"><img class="img-fluid" src="{{ c.inputs[1].thumbnail }}"></div>
         </div>
-        <div class="card-footer">
-          <small>{{ 'augmentResource' | translate:lang }} <strong class="text-info">{{ c.inputs[0].name }}</strong> {{ 'onMarker' | translate:lang }} <strong class="text-info">{{ c.inputs[1].name }}</strong></small>
-        </div>
+      </div>
+      <div class="card-footer">
+        <small>{{ 'augmentResource' | translate:lang }} <strong class="text-info">{{ c.inputs[0].name }}</strong> {{ 'onMarker' | translate:lang }} <strong class="text-info">{{ c.inputs[1].name }}</strong></small>
+      </div>
       </div>
   </div>
 </div>

@@ -47,6 +47,7 @@ export class MarkerComponent implements OnInit {
     this.addMarkerModalReference.close();
   }
 
+  // TODO: Use the same method for delete marker and poly object
   deleteMarker(resourceId: string) {
     this.workspaceService.deleteResource(this.project.id, resourceId);
   }

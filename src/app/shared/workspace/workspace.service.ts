@@ -105,4 +105,8 @@ export class WorkspaceService {
     ).valueChanges();
   }
 
+  deleteComponent(projectId: string, componentId: string): Promise<void> {
+    return this.db.object(`${WorkspaceService.PATH}/${projectId}/${WorkspaceService.COMPONENT_PATH}/${componentId}`).remove();
+  }
+
 }

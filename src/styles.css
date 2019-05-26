@@ -66,10 +66,18 @@ label>input:checked+img {
     overflow-y:scroll;
 }
 
-.img-wrap {
+.over-wrap {
     position: relative;
 }
-.img-wrap .delete {
+
+.over-wrap .delete-up {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    z-index: 100;
+}
+
+.over-wrap .delete-down {
     position: absolute;
     bottom: 4px;
     right: 4px;
