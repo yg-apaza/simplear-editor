@@ -28,7 +28,10 @@
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "node_modules/flag-icon-css/css/flag-icon.min.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/assets/google-blockly/blockly_compressed.js",
+              "src/assets/google-blockly/blocks_compressed.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {
@@ -88,7 +91,10 @@
               "../node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "node_modules/flag-icon-css/css/flag-icon.min.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/assets/google-blockly/blockly_compressed.js",
+              "src/assets/google-blockly/blocks_compressed.js"
+            ],
             "assets": [
               "src/favicon.png",
               "src/assets"

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2, Inject } from '@angular/core';
 import { LocaleService } from 'angular-l10n';
 import { AuthService } from 'src/app/shared/security/auth.service';
 import { UserModel } from 'src/app/shared/security/user.model';
 import SupportedLanguages from './supported-languages';
 import { Router } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-nav',
@@ -18,7 +19,9 @@ export class NavComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    public locale: LocaleService
+    public locale: LocaleService,
+    private renderer2: Renderer2,
+    @Inject(DOCUMENT) private document
   ) { }
 
   ngOnInit() {
@@ -26,10 +29,27 @@ export class NavComponent implements OnInit {
       this.user = user;
     });
     this.supportedLanguages = SupportedLanguages;
+    this.renderBlocklyLanguageScript();
+  }
+
+  renderBlocklyLanguageScript() {
+    this.renderer2.appendChild(this.document.body, this.getBlocklyScriptElement());
+  }
+
+  // TODO: Find a better way to change Blockly language
+  getBlocklyScriptElement() {
+    const s = this.renderer2.createElement('script');
+    s.id = 'blockly-lang-script';
+    s.type = 'text/javascript';
+    s.src = 'assets/google-blockly/msg/js/' + this.locale.getCurrentLanguage() + '.js';
+    s.text = '';
+    return s;
   }
 
   selectLanguage(language: string) {
     this.locale.setCurrentLanguage(language);
+    document.getElementById('blockly-lang-script').remove();
+    this.renderBlocklyLanguageScript();
   }
 
   logout() {
