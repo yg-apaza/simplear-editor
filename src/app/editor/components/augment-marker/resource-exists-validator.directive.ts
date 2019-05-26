@@ -18,7 +18,7 @@ export class ResourceExistsValidator implements AsyncValidator {
 
   validate(ctrl: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
     return this.workspaceService.getResource(this.projectId, ctrl.value && ctrl.value.id).pipe(
-      map(resource => resource ? null : { resourceExists: true }),
+      map(resource => resource.id ? null : { resourceExists: true }),
       catchError(() => null),
       first()
     );

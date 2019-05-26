@@ -1,6 +1,7 @@
 
 <div class="row">
   <div class="col-12">
+    <!-- TODO: Use toast instead of alert -->
     <ngb-alert *ngIf="showErrorMessage" (close)="showErrorMessage=false" l10nTranslate>resourceUsedByComponent</ngb-alert>
     <ngb-accordion #acc="ngbAccordion" activeIds="static-1">
       <ngb-panel id="static-1">

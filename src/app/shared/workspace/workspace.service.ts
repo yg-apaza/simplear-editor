@@ -41,15 +41,6 @@ export class WorkspaceService {
       ).valueChanges();
   }
 
-  getResourceByName(projectId: string, resourceName: string): Observable<ResourceModel> {
-    return this.db.list<ResourceModel>(
-      `${WorkspaceService.PATH}/${projectId}/${WorkspaceService.RESOURCE_PATH}`,
-      ref => ref.orderByChild('name').equalTo(resourceName)
-    ).valueChanges().pipe(
-      map(resources => resources[0])
-    );
-  }
-
   getAllResources(projectId: string): Observable<ResourceModel[]> {
     return this.db.list<ResourceModel>(
       `${WorkspaceService.PATH}/${projectId}/${WorkspaceService.RESOURCE_PATH}`
