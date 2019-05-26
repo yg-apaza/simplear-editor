@@ -35,6 +35,12 @@ export class WorkspaceService {
     });
   }
 
+  getResource(projectId: string, resourceId: string): Observable<ResourceModel> {
+    return this.db.object<ResourceModel>(
+      `${WorkspaceService.PATH}/${projectId}/${WorkspaceService.RESOURCE_PATH}/${resourceId}`
+      ).valueChanges();
+  }
+
   getResourceByName(projectId: string, resourceName: string): Observable<ResourceModel> {
     return this.db.list<ResourceModel>(
       `${WorkspaceService.PATH}/${projectId}/${WorkspaceService.RESOURCE_PATH}`,
@@ -73,6 +79,12 @@ export class WorkspaceService {
     );
   }
 
+  isResourceUsedInComponent(projectId: string, resource: ResourceModel, resourceType: string): Observable<boolean> {
+    return this.getAllComponentsByType(projectId, resourceType).pipe(
+      map(components => components.filter(c => c.inputs.some(r => r.id === resource.id)).length > 0)
+    );
+  }
+
   createComponent(projectId: string, component: ComponentModel): Promise<string> {
     component.id = this.db.createPushId();
     return new Promise<string>((resolve, reject) => {
@@ -93,9 +105,4 @@ export class WorkspaceService {
     ).valueChanges();
   }
 
-  isResourceUsedInComponent(projectId: string, resourceName: string, resourceType: string): Observable<boolean> {
-    return this.getAllComponentsByType(projectId, resourceType).pipe(
-      map(components => components.filter(c => c.inputs.includes(resourceName)).length > 0)
-    );
-  }
 }

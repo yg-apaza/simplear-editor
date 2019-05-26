@@ -12,7 +12,7 @@
         </ng-template>
         <ng-template ngbPanelContent>
           <div class="row">
-            <div class="col-6 col-sm-3 col-md-6 col-lg-6 text-center" *ngFor="let p of polyObjects | async">
+            <div class="col-6 col-sm-3 col-md-3 col-lg-6 text-center" *ngFor="let p of polyObjects | async">
               <div class="img-wrap">
                 <button type="button" class="delete btn btn-danger btn-sm" (click)="deletePolyObject(p.id)" >
                   <i class="far fa-trash-alt"></i>

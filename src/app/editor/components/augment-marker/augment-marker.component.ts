@@ -46,7 +46,11 @@ export class AugmentMarkerComponent implements OnInit {
   addAugmentMarker() {
     this.workspaceService.createComponent(
       this.project.id,
-      new ComponentModel('', [this.newResource.name, this.newMarker.name], AugmentMarkerComponent.COMPONENT_TYPE)
+      new ComponentModel(
+        '',
+        [this.newResource, this.newMarker],
+        AugmentMarkerComponent.COMPONENT_TYPE
+      )
     );
     this.addAugmentMarkerModalReference.close();
   }

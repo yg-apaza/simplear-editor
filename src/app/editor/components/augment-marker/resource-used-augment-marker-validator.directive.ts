@@ -20,7 +20,7 @@ export class ResourceUsedAugmentMarkerValidator implements AsyncValidator {
   validate(ctrl: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
     return this.workspaceService.isResourceUsedInComponent(
       this.projectId,
-      ctrl.value && ctrl.value.name,
+      ctrl.value,
       AugmentMarkerComponent.COMPONENT_TYPE
       ).pipe(
         map(isTaken => isTaken ? { resourceUsedInAugmentMarker: true } : null),

@@ -1,13 +1,23 @@
 <button type="button" class="btn btn-sm btn-success my-2" (click)="openAddAugmentMarkerModal(addAugmentMarkerModal)" l10nTranslate>
   <i class="fa fa-cube"></i> augmentMarker
 </button>
-<div class="col-12" *ngFor="let c of components | async">
-  <div class="d-flex flex-row">
-    <input class="form-check-input" type="radio" [value]="c" [(ngModel)]="selectedComponent" name="selectedComponent" required>
-    <small>{{ 'augmentResource' | translate:lang }} <strong class="text-success">{{ c.inputs[0] }}</strong> {{ 'onMarker' | translate:lang }} <strong class="text-success">{{ c.inputs[1] }}</strong></small>
-    <br>
+<div class="row">
+  <div class="col-12 col-sm-6 col-md-6 col-lg-12" *ngFor="let c of components | async">
+    <div class="card text-center mb-1">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-5"><img class="img-fluid" src="{{ c.inputs[0].thumbnail }}"></div>
+            <div class="col-2"><br><i class="fas fa-arrows-alt-h"></i></div>
+            <div class="col-5"><img class="img-fluid" src="{{ c.inputs[1].thumbnail }}"></div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <small>{{ 'augmentResource' | translate:lang }} <strong class="text-info">{{ c.inputs[0].name }}</strong> {{ 'onMarker' | translate:lang }} <strong class="text-info">{{ c.inputs[1].name }}</strong></small>
+        </div>
+      </div>
   </div>
 </div>
+
 
 <ng-template #addAugmentMarkerModal let-c="close" let-d="dismiss">
   <div class="modal-header">
@@ -47,7 +57,7 @@
         <div class="invalid-feedback" style="display:block" *ngIf="marker.hasError('resourceUsedInAugmentMarker')" l10nTranslate>markerAlreadyUsed</div>
       </div>
       <div class="modal-footer">
-        <small>{{ 'augmentResource' | translate:lang }} <strong class="text-success">{{ newResource.name || '_____' }}</strong> {{ 'onMarker' | translate:lang }} <strong class="text-success">{{ newMarker.name || '_____' }}</strong></small>
+        <small>{{ 'augmentResource' | translate:lang }} <strong class="text-info">{{ newResource.name || '_____' }}</strong> {{ 'onMarker' | translate:lang }} <strong class="text-info">{{ newMarker.name || '_____' }}</strong></small>
         <button type="submit" class="btn btn-outline-success" [disabled]="!addAugmentMarkerForm.form.valid">OK</button>
       </div>
     </form>
