@@ -4,7 +4,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { AuthService } from '../security/auth.service';
 import { Observable } from 'rxjs';
 import { switchMap, flatMap, filter } from 'rxjs/operators';
-import { WorkspaceService } from '../workspace/workspace.service';
+import { ProjectDetailService } from '../project-detail/project-detail.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class ProjectService {
   constructor(
     private db: AngularFireDatabase,
     private authService: AuthService,
-    private workspaceService: WorkspaceService
+    private projectDetailService: ProjectDetailService
   ) { }
 
   create(project: ProjectModel): Promise<string> {
@@ -52,7 +52,7 @@ export class ProjectService {
       flatMap(user => {
         return Promise.all([
           this.db.object(`${ProjectService.PATH}/${user.uid}/${projectId}`).remove(),
-          this.workspaceService.deleteWorkspace(projectId)
+          this.projectDetailService.delete(projectId)
         ]);
       })
     ).toPromise();

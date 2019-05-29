@@ -4,15 +4,15 @@ import { AngularFireDatabase } from '@angular/fire/database';
 @Injectable({
   providedIn: 'root'
 })
-export class WorkspaceService {
+export class ProjectDetailService {
 
-  public static PATH = 'workspaces';
+  public static PATH = 'details';
 
   constructor(
     private db: AngularFireDatabase
   ) { }
 
-  deleteWorkspace(projectId: string): Promise<void> {
-    return this.db.object(`${WorkspaceService.PATH}/${projectId}`).remove();
+  delete(projectId: string): Promise<void> {
+    return this.db.object(`${ProjectDetailService.PATH}/${projectId}`).remove();
   }
 }

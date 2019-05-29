@@ -19,7 +19,6 @@ import { EditorComponent } from './editor/editor.component';
 import { FormsModule } from '@angular/forms';
 import { ProjectResolver } from './editor/project.resolver';
 import { MarkerComponent } from './editor/resources/marker/marker.component';
-import { WorkspaceResolver } from './editor/workspace.resolver';
 import { UniqueResourceNameValidator } from './editor/resources/unique-resource-name-validator.directive';
 import { PolyObjectComponent } from './editor/resources/poly/poly-object.component';
 import { UniqueMarkerValidator } from './editor/resources/marker/unique-marker-validator.directive';
@@ -79,8 +78,7 @@ const l10nConfig: L10nConfig = {
     AngularFireAuthModule
   ],
   providers: [
-    ProjectResolver,
-    WorkspaceResolver
+    ProjectResolver
   ],
   bootstrap: [AppComponent]
 })

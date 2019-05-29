@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { WorkspaceService } from '../workspace/workspace.service';
+import { ProjectDetailService } from '../project-detail/project-detail.service';
 import { Observable } from 'rxjs';
 import { map, first } from 'rxjs/operators';
 import { ComponentModel } from './component.model';
@@ -19,7 +19,7 @@ export class ComponentService {
   create(projectId: string, component: ComponentModel): Promise<string> {
     component.id = this.db.createPushId();
     return new Promise<string>((resolve, reject) => {
-      this.db.list<ComponentModel>(`${WorkspaceService.PATH}/${projectId}/${ComponentService.PATH}`)
+      this.db.list<ComponentModel>(`${ProjectDetailService.PATH}/${projectId}/${ComponentService.PATH}`)
         .set(component.id, component).then(() => {
           resolve(component.id);
         })
@@ -31,19 +31,19 @@ export class ComponentService {
 
   getAll(projectId: string): Observable<ComponentModel[]> {
     return this.db.list<ComponentModel>(
-      `${WorkspaceService.PATH}/${projectId}/${ComponentService.PATH}`
+      `${ProjectDetailService.PATH}/${projectId}/${ComponentService.PATH}`
     ).valueChanges();
   }
 
   getAllByType(projectId: string, componentType: string): Observable<ComponentModel[]> {
     return this.db.list<ComponentModel>(
-      `${WorkspaceService.PATH}/${projectId}/${ComponentService.PATH}`,
+      `${ProjectDetailService.PATH}/${projectId}/${ComponentService.PATH}`,
       ref => ref.orderByChild('type').equalTo(componentType)
     ).valueChanges();
   }
 
   delete(projectId: string, componentId: string): Promise<void> {
-    return this.db.object(`${WorkspaceService.PATH}/${projectId}/${ComponentService.PATH}/${componentId}`).remove();
+    return this.db.object(`${ProjectDetailService.PATH}/${projectId}/${ComponentService.PATH}/${componentId}`).remove();
   }
 
   isResourceUsedInComponent(projectId: string, resourceId: string): Observable<boolean> {
