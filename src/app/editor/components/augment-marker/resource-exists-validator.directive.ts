@@ -1,8 +1,8 @@
 import { Directive, Input } from '@angular/core';
 import { NG_ASYNC_VALIDATORS, AbstractControl, ValidationErrors, AsyncValidator } from '@angular/forms';
-import { WorkspaceService } from 'src/app/shared/workspace/workspace.service';
 import { Observable } from 'rxjs';
 import { catchError, first, map } from 'rxjs/operators';
+import { ResourceService } from 'src/app/shared/resource/resource.service';
 
 @Directive({
   selector: '[appResourceExistsValidator]',
@@ -13,11 +13,11 @@ export class ResourceExistsValidator implements AsyncValidator {
   @Input('appResourceExistsValidator') projectId: string;
 
   constructor(
-    public workspaceService: WorkspaceService
+    public resourceService: ResourceService
   ) { }
 
   validate(ctrl: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
-    return this.workspaceService.getResource(this.projectId, ctrl.value && ctrl.value.id).pipe(
+    return this.resourceService.get(this.projectId, ctrl.value && ctrl.value.id).pipe(
       map(resource => resource.id ? null : { resourceExists: true }),
       catchError(() => null),
       first()

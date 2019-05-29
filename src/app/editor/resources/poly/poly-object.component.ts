@@ -2,11 +2,12 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Language } from 'angular-l10n';
 import { ProjectModel } from 'src/app/shared/project/project.model';
 import { Observable } from 'rxjs';
-import { ResourceModel } from 'src/app/shared/workspace/resource.model';
 import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { WorkspaceService } from 'src/app/shared/workspace/workspace.service';
 import { PolyService } from 'src/app/shared/poly/poly.service';
 import { Asset } from 'src/app/shared/poly/asset';
+import { ResourceModel } from 'src/app/shared/resource/resource.model';
+import { ResourceService } from 'src/app/shared/resource/resource.service';
+import { ComponentService } from 'src/app/shared/component/component.service';
 
 @Component({
   selector: 'app-poly-object',
@@ -35,12 +36,13 @@ export class PolyObjectComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-    private workspaceService: WorkspaceService,
+    private resourceService: ResourceService,
+    private componentService: ComponentService,
     private polyService: PolyService
     ) { }
 
   ngOnInit() {
-    this.polyObjects = this.workspaceService.getAllResourcesByType(this.project.id, PolyObjectComponent.RESOURCE_TYPE);
+    this.polyObjects = this.resourceService.getAllByType(this.project.id, PolyObjectComponent.RESOURCE_TYPE);
   }
 
   searchKeywords() {
@@ -71,7 +73,7 @@ export class PolyObjectComponent implements OnInit {
     this.polyService.getAsset(this.newPolyObject.content).subscribe(
       res => {
         this.newPolyObject.thumbnail = res.thumbnail.url;
-        this.workspaceService.createResource(this.project.id, this.newPolyObject);
+        this.resourceService.create(this.project.id, this.newPolyObject);
         this.newPolyObject = new ResourceModel('', '', '', '', PolyObjectComponent.RESOURCE_TYPE);
         this.addPolyObjectModalReference.close();
       },
@@ -83,10 +85,10 @@ export class PolyObjectComponent implements OnInit {
 
   // TODO: Use the same method for delete marker and poly object
   deletePolyObject(resourceId: string) {
-    this.workspaceService.isResourceUsedInComponent(this.project.id, resourceId).subscribe(
+    this.componentService.isResourceUsedInComponent(this.project.id, resourceId).subscribe(
       isUsed => {
         if (!isUsed) {
-          this.workspaceService.deleteResource(this.project.id, resourceId);
+          this.resourceService.delete(this.project.id, resourceId);
         } else {
           this.showErrorMessage = true;
         }

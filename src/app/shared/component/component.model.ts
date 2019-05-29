@@ -1,4 +1,4 @@
-import { ResourceModel } from './resource.model';
+import { ResourceModel } from '../resource/resource.model';
 
 export class ComponentModel {
 

@@ -53,7 +53,7 @@ export class BlocklyUtil {
           }
         };
 
-        Blockly.Blocks.position_xyz= {
+        Blockly.Blocks.position_xyz = {
           init() {
             this.appendDummyInput()
                 .appendField('X')
@@ -102,9 +102,9 @@ export class BlocklyUtil {
             this.appendDummyInput()
                 .appendField(new Blockly.FieldAngle(90), 'angle')
                 .appendField('around')
-                .appendField(new Blockly.FieldDropdown([['X','x'], ['Y','y'], ['Z','z']]), 'axis')
+                .appendField(new Blockly.FieldDropdown([['X', 'x'], ['Y', 'y'], ['Z', 'z']]), 'axis')
                 .appendField('in direction')
-                .appendField(new Blockly.FieldDropdown([['clockwise','clock'], ['counter clockwise','counterclock']]), 'direction');
+                .appendField(new Blockly.FieldDropdown([['clockwise', 'clock'], ['counter clockwise', 'counterclock']]), 'direction');
             this.setOutput(true, 'rotation');
             this.setColour(330);
             this.setTooltip('');

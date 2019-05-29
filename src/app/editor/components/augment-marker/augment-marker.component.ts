@@ -2,10 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ProjectModel } from 'src/app/shared/project/project.model';
 import { Observable } from 'rxjs';
-import { ResourceModel } from 'src/app/shared/workspace/resource.model';
-import { ComponentModel } from 'src/app/shared/workspace/component.model';
-import { WorkspaceService } from 'src/app/shared/workspace/workspace.service';
+import { ComponentModel } from 'src/app/shared/component/component.model';
 import { Language } from 'angular-l10n';
+import { ResourceModel } from 'src/app/shared/resource/resource.model';
+import { ComponentService } from 'src/app/shared/component/component.service';
+import { ResourceService } from 'src/app/shared/resource/resource.service';
 
 @Component({
   selector: 'app-augment-marker',
@@ -33,12 +34,13 @@ export class AugmentMarkerComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-    private workspaceService: WorkspaceService
+    private resourceService: ResourceService,
+    private componentService: ComponentService
   ) { }
 
   ngOnInit() {
-    this.resources = this.workspaceService.getAllResources(this.project.id);
-    this.components = this.workspaceService.getAllComponentsByType(this.project.id, AugmentMarkerComponent.COMPONENT_TYPE);
+    this.resources = this.resourceService.getAll(this.project.id);
+    this.components = this.componentService.getAllByType(this.project.id, AugmentMarkerComponent.COMPONENT_TYPE);
   }
 
   openAddAugmentMarkerModal(content) {
@@ -46,7 +48,7 @@ export class AugmentMarkerComponent implements OnInit {
   }
 
   addAugmentMarker() {
-    this.workspaceService.createComponent(
+    this.componentService.create(
       this.project.id,
       new ComponentModel(
         '',
@@ -63,7 +65,7 @@ export class AugmentMarkerComponent implements OnInit {
 
   // TODO: Use the same method for deleting components
   deleteAugmentMarker(componentId: string) {
-    this.workspaceService.deleteComponent(this.project.id, componentId);
+    this.componentService.delete(this.project.id, componentId);
   }
 
   selectComponent(componentId: string) {

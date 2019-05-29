@@ -1,12 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Language } from 'angular-l10n';
-import { ResourceModel } from 'src/app/shared/workspace/resource.model';
-import { WorkspaceService } from 'src/app/shared/workspace/workspace.service';
 import { ProjectModel } from 'src/app/shared/project/project.model';
 import { Observable } from 'rxjs';
 import AvailableMarkers from './available-markers';
 import Category from './category';
+import { ResourceModel } from 'src/app/shared/resource/resource.model';
+import { ResourceService } from 'src/app/shared/resource/resource.service';
+import { ComponentService } from 'src/app/shared/component/component.service';
 
 @Component({
   selector: 'app-marker',
@@ -31,11 +32,12 @@ export class MarkerComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-    private workspaceService: WorkspaceService
+    private resourceService: ResourceService,
+    private componentService: ComponentService
   ) { }
 
   ngOnInit() {
-    this.markers = this.workspaceService.getAllResourcesByType(this.project.id, MarkerComponent.RESOURCE_TYPE);
+    this.markers = this.resourceService.getAllByType(this.project.id, MarkerComponent.RESOURCE_TYPE);
   }
 
   openAddMarkerModal(content) {
@@ -44,17 +46,17 @@ export class MarkerComponent implements OnInit {
 
   addMarker() {
     this.newMarker.thumbnail = this.availableMarkers[this.newMarker.content].path;
-    this.workspaceService.createResource(this.project.id, this.newMarker);
+    this.resourceService.create(this.project.id, this.newMarker);
     this.newMarker = new ResourceModel('', '', '', '', MarkerComponent.RESOURCE_TYPE);
     this.addMarkerModalReference.close();
   }
 
   // TODO: Use the same method for delete marker and poly object
   deleteMarker(resourceId: string) {
-    this.workspaceService.isResourceUsedInComponent(this.project.id, resourceId).subscribe(
+    this.componentService.isResourceUsedInComponent(this.project.id, resourceId).subscribe(
       isUsed => {
         if (!isUsed) {
-          this.workspaceService.deleteResource(this.project.id, resourceId);
+          this.resourceService.delete(this.project.id, resourceId);
         } else {
           this.showErrorMessage = true;
         }

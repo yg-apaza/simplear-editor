@@ -8,7 +8,6 @@ import { EditorComponent } from './editor/editor.component';
 import { GuestGuard } from './shared/security/guest.guard';
 import { LoggedInGuard } from './shared/security/logged-in.guard';
 import { ProjectResolver } from './editor/project.resolver';
-import { WorkspaceResolver } from './editor/workspace.resolver';
 
 const routes: Routes = [
   {
@@ -35,8 +34,7 @@ const routes: Routes = [
         path: 'edit/:id',
         component: EditorComponent,
         resolve: {
-          project: ProjectResolver,
-          workspace: WorkspaceResolver
+          project: ProjectResolver
         },
         runGuardsAndResolvers: 'always'
       }
