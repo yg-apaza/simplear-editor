@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectModel } from '../shared/project/project.model';
 import { BlocklyUtil } from './blockly-util';
+import { EditComponentService } from '../shared/component/edit-component.service';
 
 @Component({
   selector: 'app-editor',
@@ -11,12 +12,12 @@ import { BlocklyUtil } from './blockly-util';
 export class EditorComponent implements OnInit {
 
   project = new ProjectModel('', '', '');
-  componentSelected: string;
-  blocklyUtil = new BlocklyUtil();
+  blocklyUtil = new BlocklyUtil(this.editComponentService);
 
   constructor(
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private editComponentService: EditComponentService
   ) { }
 
   ngOnInit() {

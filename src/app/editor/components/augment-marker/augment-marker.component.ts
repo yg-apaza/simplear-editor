@@ -7,6 +7,7 @@ import { Language } from 'angular-l10n';
 import { ResourceModel } from 'src/app/shared/resource/resource.model';
 import { ComponentService } from 'src/app/shared/component/component.service';
 import { ResourceService } from 'src/app/shared/resource/resource.service';
+import { EditComponentService } from 'src/app/shared/component/edit-component.service';
 
 @Component({
   selector: 'app-augment-marker',
@@ -19,12 +20,10 @@ export class AugmentMarkerComponent implements OnInit {
 
   @Language() lang: string;
   @Input() project: ProjectModel;
-  @Input() componentSelected: string;
+  selectedComponent: ComponentModel;
 
   resources: Observable<ResourceModel[]>;
   components: Observable<ComponentModel[]>;
-
-  selectedComponent: ComponentModel;
 
   newMarker = new ResourceModel('', '', '', '', '');
   newResource = new ResourceModel('', '', '', '', '');
@@ -35,12 +34,14 @@ export class AugmentMarkerComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private resourceService: ResourceService,
-    private componentService: ComponentService
+    private componentService: ComponentService,
+    private editComponentService: EditComponentService
   ) { }
 
   ngOnInit() {
     this.resources = this.resourceService.getAll(this.project.id);
     this.components = this.componentService.getAllByType(this.project.id, AugmentMarkerComponent.COMPONENT_TYPE);
+    this.editComponentService.currentComponent.subscribe(component => this.selectedComponent = component);
   }
 
   openAddAugmentMarkerModal(content) {
@@ -68,8 +69,8 @@ export class AugmentMarkerComponent implements OnInit {
     this.componentService.delete(this.project.id, componentId);
   }
 
-  selectComponent(componentId: string) {
-    this.componentSelected = componentId;
+  selectComponent(component: ComponentModel) {
+    this.editComponentService.editComponent(component);
   }
 
 }

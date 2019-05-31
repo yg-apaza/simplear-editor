@@ -2,6 +2,8 @@
 
 SimpleAR Editor is an Augmented Reality Authoring Tool using [Google Blockly](https://developers.google.com/blockly/). With visual programming you can create augmented reality apps.
 
+![Screenshot of SimpleAR Editor](screenshot.png)
+
 ## Installing / Getting started
 
 1. Clone this repository
