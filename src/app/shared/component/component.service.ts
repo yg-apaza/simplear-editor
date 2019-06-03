@@ -42,6 +42,12 @@ export class ComponentService {
     ).valueChanges();
   }
 
+  updateWorkspace(projectId: string, componentId: string, workspace: string) {
+    return this.db.object(`${ProjectDetailService.PATH}/${projectId}/${ComponentService.PATH}/${componentId}`).update({
+      workspace
+    });
+  }
+
   delete(projectId: string, componentId: string): Promise<void> {
     return this.db.object(`${ProjectDetailService.PATH}/${projectId}/${ComponentService.PATH}/${componentId}`).remove();
   }

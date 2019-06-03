@@ -54,6 +54,7 @@ export class AugmentMarkerComponent implements OnInit {
       new ComponentModel(
         '',
         [this.newResource, this.newMarker],
+        '',
         AugmentMarkerComponent.COMPONENT_TYPE
       )
     );
