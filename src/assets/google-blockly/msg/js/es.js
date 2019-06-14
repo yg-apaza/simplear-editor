@@ -6,6 +6,13 @@ goog.provide('Blockly.Msg.es');
 
 goog.require('Blockly.Msg');
 
+
+// Custom Blocks translation
+Blockly.Msg["TLX_EVENTS"] = "Eventos";
+Blockly.Msg["BKY_EVENT_TOUCH_RESOURCE"] = "Al tocar el recurso %1 %2";
+Blockly.Msg["BKY_ACTION_ROTATION"] = "Rotar el recurso %1 alrededor del eje %2 en sentido %3";
+
+
 Blockly.Msg["ADD_COMMENT"] = "Añadir comentario";
 Blockly.Msg["CANNOT_DELETE_VARIABLE_PROCEDURE"] = "No se puede eliminar la variable \"%1\" porque es parte de la definición de la función \"%2\"";
 Blockly.Msg["CHANGE_VALUE_TITLE"] = "Cambiar el valor:";

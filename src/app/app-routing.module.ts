@@ -24,7 +24,6 @@ const routes: Routes = [
     path: '',
     component: PageComponent,
     canActivate: [LoggedInGuard],
-    runGuardsAndResolvers: 'always',
     children: [
       {
         path: 'projects',
@@ -35,8 +34,7 @@ const routes: Routes = [
         component: EditorComponent,
         resolve: {
           project: ProjectResolver
-        },
-        runGuardsAndResolvers: 'always'
+        }
       }
     ]
   },

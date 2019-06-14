@@ -54,7 +54,7 @@ export class AugmentMarkerComponent implements OnInit {
       new ComponentModel(
         '',
         [this.newResource, this.newMarker],
-        '',
+        '<xml xmlns="http://www.w3.org/1999/xhtml"></xml>',
         AugmentMarkerComponent.COMPONENT_TYPE
       )
     );
@@ -72,6 +72,8 @@ export class AugmentMarkerComponent implements OnInit {
 
   selectComponent(component: ComponentModel) {
     this.editComponentService.editComponent(component);
+    // TODO: Dispose workspace after deleting component
+    // TODO: Update current component to null
   }
 
 }

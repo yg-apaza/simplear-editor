@@ -69,12 +69,13 @@ export class EditorComponent implements OnInit, AfterViewInit {
   }
 
   updateBlocklyWorkspaceForComponent(blocklyDiv: HTMLElement, componentType: string) {
+    // TODO: Fix shadow DOM error. See https://github.com/google/blockly/issues/1114
     this.currentWorkspace = Blockly.inject(
       blocklyDiv,
       {
         toolbox: BlocklyUtil.generateToolboxForComponent(componentType),
         horizontalLayout: true,
-        maxBlocks: Infinity,  // Disable all blocks first time
+        maxBlocks: Infinity,
         grid : {
           spacing : 20,
           length : 1,

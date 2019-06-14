@@ -1,9 +1,9 @@
-import { Component, OnInit, Renderer2, Inject } from '@angular/core';
+import { Component, OnInit, Renderer2, Inject, OnDestroy } from '@angular/core';
 import { LocaleService } from 'angular-l10n';
 import { AuthService } from 'src/app/shared/security/auth.service';
 import { UserModel } from 'src/app/shared/security/user.model';
 import SupportedLanguages from './supported-languages';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd, Event } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
@@ -11,10 +11,11 @@ import { DOCUMENT } from '@angular/common';
   templateUrl: './nav.component.html',
   styles: []
 })
-export class NavComponent implements OnInit {
+export class NavComponent implements OnInit, OnDestroy {
 
   user: UserModel;
   supportedLanguages = SupportedLanguages;
+  navigationSubscription;
 
   constructor(
     private router: Router,
@@ -22,7 +23,14 @@ export class NavComponent implements OnInit {
     public locale: LocaleService,
     private renderer2: Renderer2,
     @Inject(DOCUMENT) private document
-  ) { }
+  ) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.navigationSubscription = this.router.events.subscribe((e: Event) => {
+      if (e instanceof NavigationEnd) {
+        this.router.navigated = false;
+      }
+    });
+  }
 
   ngOnInit() {
     this.authService.getCurrentUser().subscribe(user => {
@@ -32,24 +40,20 @@ export class NavComponent implements OnInit {
     this.renderBlocklyLanguageScript();
   }
 
-  renderBlocklyLanguageScript() {
-    this.renderer2.appendChild(this.document.body, this.getBlocklyScriptElement());
-  }
-
   // TODO: Find a better way to change Blockly language
-  getBlocklyScriptElement() {
+  renderBlocklyLanguageScript() {
     const s = this.renderer2.createElement('script');
     s.id = 'blockly-lang-script';
     s.type = 'text/javascript';
     s.src = 'assets/google-blockly/msg/js/' + this.locale.getCurrentLanguage() + '.js';
     s.text = '';
-    return s;
+    this.renderer2.appendChild(this.document.body, s);
   }
 
   selectLanguage(language: string) {
     this.locale.setCurrentLanguage(language);
-    document.getElementById('blockly-lang-script').remove();
-    this.renderBlocklyLanguageScript();
+    // TODO: Re-load current page only if a Blockly workspace is used
+    this.router.navigate([this.router.url]);
   }
 
   logout() {
@@ -58,5 +62,11 @@ export class NavComponent implements OnInit {
       .catch( err => {
         console.error('Couldn\'t logout user');
       });
+  }
+
+  ngOnDestroy() {
+    if (this.navigationSubscription) {
+      this.navigationSubscription.unsubscribe();
+    }
   }
 }
