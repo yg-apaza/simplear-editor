@@ -39,9 +39,9 @@ export class BlocklyUtil {
       init() {
         this.jsonInit({
           type: 'action_nothing',
-          message0: 'Do nothing',
+          message0: Blockly.Msg.BKY_ACTION_NOTHING,
           previousStatement: 'action',
-          colour: 120,
+          colour: 290,
           tooltip: '',
           helpUrl: ''
         });
@@ -72,8 +72,8 @@ export class BlocklyUtil {
               type: 'field_dropdown',
               name: 'direction',
               options: [
-                ['clockwise', 'clock'],
-                ['counter clockwise', 'counterclock']
+                [Blockly.Msg.BKY_ACTION_ROTATION_CLOCK, 'clock'],
+                [Blockly.Msg.BKY_ACTION_ROTATION_COUNTERCLOCK, 'counterclock']
               ]
             }
           ],
@@ -103,7 +103,7 @@ export class BlocklyUtil {
             </statement>
           </block>
         </category>
-        <category name="Actions" colour="#935ba5">
+        <category name="${Blockly.Msg.TLX_ACTIONS}" colour="#935ba5">
           <block type="action_rotation">
             <field name="angle">90</field>
             <field name="axis">x</field>
