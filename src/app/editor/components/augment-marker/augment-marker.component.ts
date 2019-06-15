@@ -73,7 +73,6 @@ export class AugmentMarkerComponent implements OnInit {
   }
 
   selectComponent(component: ComponentModel) {
-    console.log('Select component' + JSON.stringify(component));
     this.editComponentService.editComponent(component);
   }
 

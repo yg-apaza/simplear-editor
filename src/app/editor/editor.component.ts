@@ -62,7 +62,6 @@ export class EditorComponent implements OnInit, AfterViewInit {
 
     this.editComponentService.currentComponent.subscribe(newComponent => {
       this.currentWorkspace.dispose();
-      console.log(newComponent);
       if (newComponent) {
         this.updateBlocklyWorkspaceForComponent(blocklyDiv, newComponent.type);
         Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(newComponent.workspace), this.currentWorkspace);
