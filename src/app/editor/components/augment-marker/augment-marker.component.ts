@@ -55,6 +55,7 @@ export class AugmentMarkerComponent implements OnInit {
         '',
         [this.newResource, this.newMarker],
         '<xml xmlns="http://www.w3.org/1999/xhtml"></xml>',
+        '{}',
         AugmentMarkerComponent.COMPONENT_TYPE
       )
     );
@@ -68,7 +69,9 @@ export class AugmentMarkerComponent implements OnInit {
   // TODO: Use the same method for deleting components
   deleteAugmentMarker(event: Event, componentId: string) {
     this.componentService.delete(this.project.id, componentId);
-    this.editComponentService.editComponent(null);
+    if (this.selectedComponent && this.selectedComponent.id === componentId) {
+      this.editComponentService.editComponent(null);
+    }
     event.stopPropagation();
   }
 

@@ -18,6 +18,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
   project = new ProjectModel('', '', '');
   selectedComponent: ComponentModel;
   currentWorkspace: any;
+  componentConfigurationStatus = 'EMPTY';
 
   constructor(
     private router: Router,
@@ -65,8 +66,12 @@ export class EditorComponent implements OnInit, AfterViewInit {
       if (newComponent) {
         this.updateBlocklyWorkspaceForComponent(blocklyDiv, newComponent.type);
         Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(newComponent.workspace), this.currentWorkspace);
+        // Check configuration for the first time
+        const code = `{${Blockly.ar.workspaceToCode(Blockly.mainWorkspace).slice(0, -1)}}`;
+        this.isValidConfiguration(code);
       } else {
         this.updateBlocklyWorkspaceForComponent(blocklyDiv, 'empty');
+        this.componentConfigurationStatus = 'EMPTY';
       }
       this.selectedComponent = newComponent;
     });
@@ -80,6 +85,9 @@ export class EditorComponent implements OnInit, AfterViewInit {
         toolbox: BlocklyUtil.generateToolboxForComponent(componentType),
         horizontalLayout: true,
         maxBlocks: Infinity,
+        maxInstances: {
+          event_touch_resource: 1
+        },
         grid : {
           spacing : 20,
           length : 1,
@@ -104,11 +112,28 @@ export class EditorComponent implements OnInit, AfterViewInit {
         event.type === Blockly.Events.MOVE ||
         event.type === Blockly.Events.CHANGE ) {
         // Auto-save for every change detected
+        /// Get workspace
         const xmlWorkspace = Blockly.Xml.workspaceToDom(this.currentWorkspace);
         const stringXmlWorkspace = Blockly.Xml.domToPrettyText(xmlWorkspace);
         this.componentService.updateWorkspace(this.project.id, this.selectedComponent.id, stringXmlWorkspace);
+        /// Get generated code
+        const code = `{${Blockly.ar.workspaceToCode(Blockly.mainWorkspace).slice(0, -1)}}`;
+        if (this.isValidConfiguration(code)) {
+          this.componentService.updateConfiguration(this.project.id, this.selectedComponent.id, code);
+        }
       }
     });
+  }
+
+  private isValidConfiguration(configuration: string): boolean {
+    try {
+      JSON.parse(configuration);
+      this.componentConfigurationStatus = 'VALID';
+      return true;
+    } catch (e) {
+      this.componentConfigurationStatus = 'INVALID';
+      return false;
+    }
   }
 
 }

@@ -17,5 +17,7 @@
     <div id="blocklyArea" style="height:60vh;">
       <div id="blocklyDiv"></div>
     </div>
+    <div class="alert alert-success" *ngIf="componentConfigurationStatus === 'VALID'" l10nTranslate>validConfiguration</div>
+    <div class="alert alert-danger" *ngIf="componentConfigurationStatus === 'INVALID'" l10nTranslate>invalidConfiguration</div>
   </div>
 </div>

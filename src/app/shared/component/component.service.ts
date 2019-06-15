@@ -48,6 +48,12 @@ export class ComponentService {
     });
   }
 
+  updateConfiguration(projectId: string, componentId: string, configuration: string) {
+    return this.db.object(`${ProjectDetailService.PATH}/${projectId}/${ComponentService.PATH}/${componentId}`).update({
+      configuration
+    });
+  }
+
   delete(projectId: string, componentId: string): Promise<void> {
     return this.db.object(`${ProjectDetailService.PATH}/${projectId}/${ComponentService.PATH}/${componentId}`).remove();
   }

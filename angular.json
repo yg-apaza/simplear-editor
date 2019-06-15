@@ -30,7 +30,8 @@
             ],
             "scripts": [
               "src/assets/google-blockly/blockly_compressed.js",
-              "src/assets/google-blockly/blocks_compressed.js"
+              "src/assets/google-blockly/blocks_compressed.js",
+              "src/assets/google-blockly/generators/ar.js"
             ],
             "es5BrowserSupport": true
           },
@@ -93,7 +94,8 @@
             ],
             "scripts": [
               "src/assets/google-blockly/blockly_compressed.js",
-              "src/assets/google-blockly/blocks_compressed.js"
+              "src/assets/google-blockly/blocks_compressed.js",
+              "src/assets/google-blockly/generators/ar.js"
             ],
             "assets": [
               "src/favicon.png",
