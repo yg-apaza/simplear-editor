@@ -9,8 +9,12 @@ goog.require('Blockly.Msg');
 
 // Custom Blocks translation
 Blockly.Msg["TLX_EVENTS"] = "Events";
+Blockly.Msg["TLX_ACTIONS"] = "Actions";
 Blockly.Msg["BKY_EVENT_TOUCH_RESOURCE"] = "On click on resource %1 %2";
+Blockly.Msg["BKY_ACTION_NOTHING"] = "Do nothing";
 Blockly.Msg["BKY_ACTION_ROTATION"] = "Rotate the resource %1 around %2 axis in %3 direction";
+Blockly.Msg["BKY_ACTION_ROTATION_CLOCK"] = "clockwise"
+Blockly.Msg["BKY_ACTION_ROTATION_COUNTERCLOCK"] = "counter clockwise"
 
 
 Blockly.Msg["ADD_COMMENT"] = "Add Comment";

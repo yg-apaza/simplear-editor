@@ -32,12 +32,12 @@ body {
     cursor: pointer;
 }
 
-.ng-valid[required], .ng-valid.required  {
-    border-left: 5px solid #42A948; /* green */
+.ng-valid[required], .ng-valid.required {
+    border-left: 5px solid #42A948;
 }
 
-.ng-invalid:not(form)  {
-    border-left: 5px solid #a94442; /* red */
+.ng-invalid:not(form) {
+    border-left: 5px solid #a94442;
 }
 
 /*Check input with images*/
@@ -66,6 +66,7 @@ label>input:checked+img {
     overflow-y:scroll;
 }
 
+/* TODO: Check over-wrap's position relative and overwriting with absolute */
 .over-wrap {
     position: relative;
 }
