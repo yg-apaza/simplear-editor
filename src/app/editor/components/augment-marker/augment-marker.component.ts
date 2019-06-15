@@ -66,16 +66,15 @@ export class AugmentMarkerComponent implements OnInit {
   }
 
   // TODO: Use the same method for deleting components
-  deleteAugmentMarker(componentId: string) {
+  deleteAugmentMarker(event: Event, componentId: string) {
     this.componentService.delete(this.project.id, componentId);
     this.editComponentService.editComponent(null);
+    event.stopPropagation();
   }
 
   selectComponent(component: ComponentModel) {
     console.log('Select component' + JSON.stringify(component));
     this.editComponentService.editComponent(component);
-    // TODO: Dispose workspace after deleting component
-    // TODO: Update current component to null
   }
 
 }

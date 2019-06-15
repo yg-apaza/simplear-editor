@@ -4,7 +4,7 @@
 <div class="row">
   <div class="col-12 col-sm-6 col-md-6 col-lg-12" *ngFor="let c of components | async">
     <div class="card clickable text-center mb-1 over-wrap" (click)="selectComponent(c)" [ngClass]="{'card-selected':c.id === selectedComponent?.id}">
-      <button type="button" class="delete-up btn btn-danger btn-sm" (click)="deleteAugmentMarker(c.id)" >
+      <button type="button" class="delete-up btn btn-danger btn-sm" (click)="deleteAugmentMarker($event, c.id)" >
         <i class="far fa-trash-alt"></i>
       </button>
       <div class="card-body">
