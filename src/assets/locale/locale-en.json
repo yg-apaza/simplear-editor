@@ -45,6 +45,6 @@
     "onMarker": "on marker",
     "markerAlreadyUsed": "Marker was already used for augmenting another resource",
 
-    "validConfiguration": "This component is valid and doesn't have any errors 🙂",
-    "invalidConfiguration": "This component is invalid, ensure there aren't any errors or unused blocks 🙁"
+    "validConfiguration": "🙂 This component is valid and doesn't have any errors",
+    "invalidConfiguration": "🙁 This component is invalid, ensure there aren't any errors or unused blocks"
 }

@@ -45,6 +45,6 @@
     "onMarker": "sobre el marcador",
     "markerAlreadyUsed": "El marcador ya fue utilizado para aumentar otro recurso",
 
-    "validConfiguration": "Este componente es válido y no presenta errores 🙂",
-    "invalidConfiguration": "Este componente es inválido, revisa que no haya errores o bloques sin usar 🙁"
+    "validConfiguration": "🙂 Este componente es válido y no presenta errores",
+    "invalidConfiguration": "🙁 Este componente es inválido, revisa que no haya errores o bloques sin usar"
 }

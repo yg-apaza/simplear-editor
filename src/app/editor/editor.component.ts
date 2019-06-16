@@ -5,6 +5,7 @@ import { EditComponentService } from '../shared/component/edit-component.service
 import { ComponentModel } from '../shared/component/component.model';
 import { BlocklyUtil } from './blockly-util';
 import { ComponentService } from '../shared/component/component.service';
+import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 declare var Blockly: any;
 
@@ -19,12 +20,14 @@ export class EditorComponent implements OnInit, AfterViewInit {
   selectedComponent: ComponentModel;
   currentWorkspace: any;
   componentConfigurationStatus = 'EMPTY';
+  previewKeyModalReference: NgbModalRef;
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private editComponentService: EditComponentService,
-    private componentService: ComponentService
+    private componentService: ComponentService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit() {
@@ -134,6 +137,10 @@ export class EditorComponent implements OnInit, AfterViewInit {
       this.componentConfigurationStatus = 'INVALID';
       return false;
     }
+  }
+
+  openPreviewKeyModal(content) {
+    this.previewKeyModalReference = this.modalService.open(content);
   }
 
 }
