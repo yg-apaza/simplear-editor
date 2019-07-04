@@ -10,7 +10,7 @@ Blockly.ar.action_rotation = function(block) {
   var angle = block.getFieldValue('angle');
   var axis = block.getFieldValue('axis');
   var direction = block.getFieldValue('direction');
-  var code = `{"type": "rotation", "inputs": [${angle}, "${axis}", "${direction}"]}`;
+  var code = `{"type": "rotation", "inputs": ["${angle}", "${axis}", "${direction}"]}`;
   if(block.nextConnection && block.nextConnection.targetBlock()) {
     var nextBlock = block.nextConnection && block.nextConnection.targetBlock()
     var nextCode = Blockly.ar.blockToCode(nextBlock);

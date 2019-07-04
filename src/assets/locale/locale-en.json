@@ -46,5 +46,10 @@
     "markerAlreadyUsed": "Marker was already used for augmenting another resource",
 
     "validConfiguration": "🙂 This component is valid and doesn't have any errors",
-    "invalidConfiguration": "🙁 This component is invalid, ensure there aren't any errors or unused blocks"
+    "invalidConfiguration": "🙁 This component is invalid, ensure there aren't any errors or unused blocks",
+
+    "PREVIEWAPP": "PREVIEW YOUR APP",
+    "previewApp": "Preview your app",
+    "previewAppInstructions": "Open SimpleAR app for Android and scan the following QR code"
+
 }
