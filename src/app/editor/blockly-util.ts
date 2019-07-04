@@ -11,11 +11,11 @@ export class BlocklyUtil {
 
   static addBlocks() {
     // EVENT BLOCKS
-    Blockly.Blocks.event_touch_resource = {
+    Blockly.Blocks.event_touch_poly = {
       init() {
         this.jsonInit({
-          type: 'event_touch_resource',
-          message0: Blockly.Msg.BKY_EVENT_TOUCH_RESOURCE,
+          type: 'event_touch_poly',
+          message0: Blockly.Msg.BKY_EVENT_TOUCH_POLY,
           args0: [
             {
               type: 'input_dummy'
@@ -97,7 +97,7 @@ export class BlocklyUtil {
     const augmentMarkerToolbox = `
       <xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
         <category name="${Blockly.Msg.TLX_EVENTS}" colour="#5b80a5">
-          <block type="event_touch_resource">
+          <block type="event_touch_poly">
             <statement name="ACTIONS">
               <shadow type="action_nothing"></shadow>
             </statement>

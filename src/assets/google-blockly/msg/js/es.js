@@ -10,7 +10,7 @@ goog.require('Blockly.Msg');
 // Custom Blocks translation
 Blockly.Msg["TLX_EVENTS"] = "Eventos";
 Blockly.Msg["TLX_ACTIONS"] = "Acciones";
-Blockly.Msg["BKY_EVENT_TOUCH_RESOURCE"] = "Al tocar el recurso %1 %2";
+Blockly.Msg["BKY_EVENT_TOUCH_POLY"] = "Al tocar el recurso %1 %2";
 Blockly.Msg["BKY_ACTION_NOTHING"] = "No hacer nada";
 Blockly.Msg["BKY_ACTION_ROTATION"] = "Rotar el recurso %1 alrededor del eje %2 en sentido %3";
 Blockly.Msg["BKY_ACTION_ROTATION_CLOCK"] = "horario"

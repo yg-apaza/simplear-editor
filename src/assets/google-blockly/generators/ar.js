@@ -1,8 +1,8 @@
 Blockly.ar = new Blockly.Generator('ar');
 
-Blockly.ar.event_touch_resource = function(block) {
+Blockly.ar.event_touch_poly = function(block) {
   var statements_actions = Blockly.ar.statementToCode(block, 'ACTIONS');
-  var code = `"touch_resource": [${statements_actions}],`;
+  var code = `"touch_poly": [${statements_actions}],`;
   return code;
 };
 
