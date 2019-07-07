@@ -11,11 +11,11 @@ export class BlocklyUtil {
 
   static addBlocks() {
     // EVENT BLOCKS
-    Blockly.Blocks.event_touch_resource = {
+    Blockly.Blocks.event_touch_threedmodel = {
       init() {
         this.jsonInit({
-          type: 'event_touch_resource',
-          message0: Blockly.Msg.BKY_EVENT_TOUCH_RESOURCE,
+          type: 'event_touch_threedmodel',
+          message0: Blockly.Msg.BKY_EVENT_TOUCH_THREEDMODEL,
           args0: [
             {
               type: 'input_dummy'
@@ -86,6 +86,39 @@ export class BlocklyUtil {
         });
       }
     };
+
+    Blockly.Blocks.action_translate = {
+      init() {
+        this.jsonInit({
+          type: 'action_translate',
+          message0: Blockly.Msg.BKY_ACTION_TRANSLATE,
+          args0: [
+            {
+              'type': 'field_number',
+              'name': 'units',
+              'value': 100,
+              'min': 1,
+              'precision': 1
+            },
+            {
+              type: 'field_dropdown',
+              name: 'axis',
+              options: [
+                ['X', 'x'],
+                ['Y', 'y'],
+                ['Z', 'z']
+              ]
+            }
+          ],
+          inputsInline: true,
+          previousStatement: 'action',
+          nextStatement: 'action',
+          colour: 290,
+          tooltip: '',
+          helpUrl: ''
+        });
+      }
+    };
   }
 
   static generateToolboxForComponent(componentType: string): string {
@@ -97,7 +130,7 @@ export class BlocklyUtil {
     const augmentMarkerToolbox = `
       <xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
         <category name="${Blockly.Msg.TLX_EVENTS}" colour="#5b80a5">
-          <block type="event_touch_resource">
+          <block type="event_touch_threedmodel">
             <statement name="ACTIONS">
               <shadow type="action_nothing"></shadow>
             </statement>
@@ -108,6 +141,10 @@ export class BlocklyUtil {
             <field name="angle">90</field>
             <field name="axis">x</field>
             <field name="direction">clock</field>
+          </block>
+          <block type="action_translate">
+            <field name="units">100</field>
+            <field name="axis">x</field>
           </block>
         </category>
       </xml>`;

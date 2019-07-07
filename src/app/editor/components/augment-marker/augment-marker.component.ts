@@ -26,7 +26,7 @@ export class AugmentMarkerComponent implements OnInit {
   components: Observable<ComponentModel[]>;
 
   newMarker = new ResourceModel('', '', '', '', '');
-  newResource = new ResourceModel('', '', '', '', '');
+  newThreeDModel = new ResourceModel('', '', '', '', '');
 
   // Add augment marker component
   addAugmentMarkerModalReference: NgbModalRef;
@@ -53,7 +53,7 @@ export class AugmentMarkerComponent implements OnInit {
       this.project.id,
       new ComponentModel(
         '',
-        [this.newResource, this.newMarker],
+        [this.newThreeDModel, this.newMarker],
         '<xml xmlns="http://www.w3.org/1999/xhtml"></xml>',
         '{}',
         AugmentMarkerComponent.COMPONENT_TYPE

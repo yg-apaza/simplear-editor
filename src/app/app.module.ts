@@ -20,7 +20,7 @@ import { FormsModule } from '@angular/forms';
 import { ProjectResolver } from './editor/project.resolver';
 import { MarkerComponent } from './editor/resources/marker/marker.component';
 import { UniqueResourceNameValidator } from './editor/resources/unique-resource-name-validator.directive';
-import { PolyObjectComponent } from './editor/resources/poly/poly-object.component';
+import { ThreeDModelComponent } from './editor/resources/three-d-model/three-d-model.component';
 import { UniqueMarkerValidator } from './editor/resources/marker/unique-marker-validator.directive';
 import { AugmentMarkerComponent } from './editor/components/augment-marker/augment-marker.component';
 import { ResourceExistsValidator } from './editor/components/augment-marker/resource-exists-validator.directive';
@@ -59,7 +59,7 @@ const l10nConfig: L10nConfig = {
     ProjectListComponent,
     EditorComponent,
     MarkerComponent,
-    PolyObjectComponent,
+    ThreeDModelComponent,
     UniqueResourceNameValidator,
     UniqueMarkerValidator,
     AugmentMarkerComponent,

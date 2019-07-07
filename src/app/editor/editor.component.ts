@@ -89,7 +89,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
         horizontalLayout: true,
         maxBlocks: Infinity,
         maxInstances: {
-          event_touch_resource: 1
+          event_touch_threedmodel: 1
         },
         grid : {
           spacing : 20,

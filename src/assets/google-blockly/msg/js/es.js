@@ -10,11 +10,12 @@ goog.require('Blockly.Msg');
 // Custom Blocks translation
 Blockly.Msg["TLX_EVENTS"] = "Eventos";
 Blockly.Msg["TLX_ACTIONS"] = "Acciones";
-Blockly.Msg["BKY_EVENT_TOUCH_RESOURCE"] = "Al tocar el recurso %1 %2";
+Blockly.Msg["BKY_EVENT_TOUCH_THREEDMODEL"] = "Al tocar el modelo 3D %1 %2";
 Blockly.Msg["BKY_ACTION_NOTHING"] = "No hacer nada";
-Blockly.Msg["BKY_ACTION_ROTATION"] = "Rotar el recurso %1 alrededor del eje %2 en sentido %3";
+Blockly.Msg["BKY_ACTION_ROTATION"] = "Rotar el modelo 3D %1 alrededor del eje %2 en sentido %3";
 Blockly.Msg["BKY_ACTION_ROTATION_CLOCK"] = "horario"
 Blockly.Msg["BKY_ACTION_ROTATION_COUNTERCLOCK"] = "anti-horario"
+Blockly.Msg["BKY_ACTION_TRANSLATE"] = "Mover el modelo 3D %1 unidades en dirección del eje %2",
 
 Blockly.Msg["ADD_COMMENT"] = "Añadir comentario";
 Blockly.Msg["CANNOT_DELETE_VARIABLE_PROCEDURE"] = "No se puede eliminar la variable \"%1\" porque es parte de la definición de la función \"%2\"";

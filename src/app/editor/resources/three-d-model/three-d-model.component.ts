@@ -10,18 +10,18 @@ import { ResourceService } from 'src/app/shared/resource/resource.service';
 import { ComponentService } from 'src/app/shared/component/component.service';
 
 @Component({
-  selector: 'app-poly-object',
-  templateUrl: './poly-object.component.html',
+  selector: 'app-three-d-model',
+  templateUrl: './three-d-model.component.html',
   styles: []
 })
-export class PolyObjectComponent implements OnInit {
+export class ThreeDModelComponent implements OnInit {
 
-  public static RESOURCE_TYPE = 'poly';
+  public static RESOURCE_TYPE = '3dmodel';
 
   @Language() lang: string;
   @Input() project: ProjectModel;
 
-  polyObjects: Observable<ResourceModel[]>;
+  threeDModels: Observable<ResourceModel[]>;
 
   showErrorMessage = false;
 
@@ -31,8 +31,8 @@ export class PolyObjectComponent implements OnInit {
   showPlaceholderEmptySearch = true;
 
   // Add poly object resource
-  addPolyObjectModalReference: NgbModalRef;
-  newPolyObject = new ResourceModel('', '', '', '', PolyObjectComponent.RESOURCE_TYPE);
+  addThreeDModelModalReference: NgbModalRef;
+  newThreeDModel = new ResourceModel('', '', '', '', ThreeDModelComponent.RESOURCE_TYPE);
 
   constructor(
     private modalService: NgbModal,
@@ -42,12 +42,12 @@ export class PolyObjectComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.polyObjects = this.resourceService.getAllByType(this.project.id, PolyObjectComponent.RESOURCE_TYPE);
+    this.threeDModels = this.resourceService.getAllByType(this.project.id, ThreeDModelComponent.RESOURCE_TYPE);
   }
 
   searchKeywords() {
     // TODO: Show all pages
-    this.newPolyObject.id = null;
+    this.newThreeDModel.id = null;
     this.polyService.listAssets({ keywords: this.keywords, format: 'OBJ', pageSize: '12' })
       .subscribe(
         res => {
@@ -65,17 +65,17 @@ export class PolyObjectComponent implements OnInit {
       );
   }
 
-  openAddPolyObjectModal(content) {
-    this.addPolyObjectModalReference = this.modalService.open(content);
+  openAddThreeDModelModal(content) {
+    this.addThreeDModelModalReference = this.modalService.open(content);
   }
 
-  addPolyObject() {
-    this.polyService.getAsset(this.newPolyObject.content).subscribe(
+  addThreeDModel() {
+    this.polyService.getAsset(this.newThreeDModel.content).subscribe(
       res => {
-        this.newPolyObject.thumbnail = res.thumbnail.url;
-        this.resourceService.create(this.project.id, this.newPolyObject);
-        this.newPolyObject = new ResourceModel('', '', '', '', PolyObjectComponent.RESOURCE_TYPE);
-        this.addPolyObjectModalReference.close();
+        this.newThreeDModel.thumbnail = res.thumbnail.url;
+        this.resourceService.create(this.project.id, this.newThreeDModel);
+        this.newThreeDModel = new ResourceModel('', '', '', '', ThreeDModelComponent.RESOURCE_TYPE);
+        this.addThreeDModelModalReference.close();
       },
       err => {
         console.error('Couldn\'t get thumbnail for Poly object');
@@ -83,8 +83,8 @@ export class PolyObjectComponent implements OnInit {
     );
   }
 
-  // TODO: Use the same method for delete marker and poly object
-  deletePolyObject(resourceId: string) {
+  // TODO: Use the same method for delete markers and 3D models
+  deleteThreeDModel(resourceId: string) {
     this.componentService.isResourceUsedInComponent(this.project.id, resourceId).subscribe(
       isUsed => {
         if (!isUsed) {
