@@ -94,11 +94,10 @@ export class BlocklyUtil {
           message0: Blockly.Msg.BKY_ACTION_TRANSLATE,
           args0: [
             {
-              'type': 'field_number',
-              'name': 'units',
-              'value': 100,
-              'min': 1,
-              'precision': 1
+              type: 'field_number',
+              name: 'units',
+              value: 100,
+              precision: 1
             },
             {
               type: 'field_dropdown',
