@@ -97,6 +97,8 @@ export class BlocklyUtil {
               type: 'field_number',
               name: 'units',
               value: 100,
+              min: -15000,
+              max: 15000,
               precision: 1
             },
             {
